@@ -2,7 +2,7 @@ import "reflect-metadata";
 import "express-async-errors";
 import express, { Request, Response, NextFunction } from "express";
 import path from "path";
-import { router } from "../routes/routes-user";
+import { router } from "../routes/user-route";
 import "./database";
 import morgan from "morgan";
 
