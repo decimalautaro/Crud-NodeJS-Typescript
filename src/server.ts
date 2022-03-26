@@ -2,13 +2,25 @@ import "reflect-metadata";
 import "express-async-errors";
 import express, { Request, Response, NextFunction } from "express";
 import path from "path";
-import { router } from "./routes";
+import { router } from "../routes/routes-user";
 import "./database";
+import morgan from "morgan";
+
 
 const app = express();
+
+//inicializacion
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+
+//middlewares
+app.use(morgan('dev'));
+
+
+//rutas
 app.use(router);
+
 
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
   if (err instanceof Error) {
@@ -28,5 +40,5 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "..", "views"));
 
 app.listen(3000, () => {
-  console.log("Server is running at port 3000");
+  console.log("Servidor escuchando en puerto 3000");
 });
