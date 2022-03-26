@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
@@ -28,10 +28,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="./">Home</a>
+            <a class="nav-link active" aria-current="page" href="./">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="./add">Adicionar usuário</a>
+            <a class="nav-link active" aria-current="page" href="./add">Agregar usuario</a>
           </li>
         </ul>
         <form class="d-flex" action="./search" method="GET">
@@ -44,13 +44,13 @@
   <br>
   <div class="container">
     <div class="text-center">
-      <h2>Tabela de usuários</h2>
+      <h2>Llene sus datos</h2>
     </div>
     <br>
     <form action="./add-user" method="POST">
       <div class="row">
         <div class="col-12">
-          <label for="username" class="form-label">Username</label>
+          <label for="username" class="form-label">Usuario</label>
           <input type="text" name="username" id="username" class="form-control">
         </div>
       </div>
@@ -61,47 +61,43 @@
           <input type="text" name="email" id="email" class="form-control">
         </div>
         <div class="col-6">
-          <label for="telefone" class="form-label">Telefone</label>
+          <label for="telefone" class="form-label">Telefono</label>
           <input type="text" name="telefone" id="telefone" class="form-control">
         </div>
       </div>
       <br>
       <div class="row">
         <div class="col-6">
-          <label for="cidade" class="form-label">Cidade</label>
+          <label for="cidade" class="form-label">Ciudad</label>
           <input type="text" name="cidade" id="cidade" class="form-control">
         </div>
         <div class="col-6">
-          <label for="estado" class="form-label">Estado</label>
+          <label for="estado" class="form-label">Provincia</label>
           <select name="estado" id="estado" class="form-select">
-            <option value="" selected disabled>Selecione seu estado</option>
-            <option value="AC">Acre</option>
-            <option value="AL">Alagoas</option>
-            <option value="AP">Amapá</option>
-            <option value="AM">Amazonas</option>
-            <option value="BA">Bahia</option>
-            <option value="CE">Ceará</option>
-            <option value="DF">Distrito Federal</option>
-            <option value="ES">Espírito Santo</option>
-            <option value="GO">Goiás</option>
-            <option value="MA">Maranhão</option>
-            <option value="MT">Mato Grosso</option>
-            <option value="MS">Mato Grosso do Sul</option>
-            <option value="MG">Minas Gerais</option>
-            <option value="PA">Pará</option>
-            <option value="PB">Paraíba</option>
-            <option value="PR">Paraná</option>
-            <option value="PE">Pernambuco</option>
-            <option value="PI">Piauí</option>
-            <option value="RJ">Rio de Janeiro</option>
-            <option value="RN">Rio Grande do Norte</option>
-            <option value="RS">Rio Grande do Sul</option>
-            <option value="RO">Rondônia</option>
-            <option value="RR">Roraima</option>
-            <option value="SC">Santa Catarina</option>
-            <option value="SP">São Paulo</option>
-            <option value="SE">Sergipe</option>
-            <option value="TO">Tocantins</option>
+            <option value="" selected disabled>Selecione su provincia</option>
+            <option value="Buenos Aires">Buenos Aires</option>
+            <option value="Catamarca">Catamarca</option>
+            <option value="Chaco">Chaco</option>
+            <option value="Chubut">Chubut</option>
+            <option value="Córdoba">Córdoba</option>
+            <option value="Corrientes">Corrientes</option>
+            <option value="Entre Ríos">Entre Ríos</option>
+            <option value="Formosa">Formosa</option>
+            <option value="Jujuy">Jujuy</option>
+            <option value="La Pampa">La Pampa</option>
+            <option value="La Rioja">La Rioja</option>
+            <option value="Mendoza">Mendoza</option>
+            <option value="Misiones">Misiones</option>
+            <option value="Neuquén">Neuquén</option>
+            <option value="Río Negro">Río Negro</option>
+            <option value="Salta">Salta</option>
+            <option value="San Juan">San Juan</option>
+            <option value="San Luis">San Luis</option>
+            <option value="Santa Cruz">Santa Cruz</option>
+            <option value="Santa Fe">Santa Fe</option>
+            <option value="Santiago del Estero">Santiago del Estero</option>
+            <option value="Tierra del Fuego	">Tierra del Fuego</option>
+            <option value="Tucumán">Tucumán</option>
           </select>
         </div>
       </div>
@@ -109,12 +105,12 @@
       <div class="row">
         <div class="col-6">
           <div class="float-start">
-            <button type="submit" class="btn primary-btn">Adicionar usuário</button>
+            <button type="submit" class="btn primary-btn">Agregar usuario</button>
           </div>
         </div>
         <div class="col-6">
           <div class="float-end">
-            <a href="./" class="btn secondary-btn">Voltar à home</a>
+            <a href="./" class="btn secondary-btn">Volver a inicio</a>
           </div>
         </div>
       </div>
