@@ -14,13 +14,13 @@ class User {
   email: string;
 
   @Column()
-  telefone: string;
+  phone: string;
 
   @Column()
-  cidade: string;
+  city: string;
 
   @Column()
-  estado: string;
+  state: string;
 
   @CreateDateColumn()
   created_at: Date;

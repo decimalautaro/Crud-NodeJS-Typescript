@@ -6,15 +6,15 @@ interface IUser {
     id?: string
     username: string;
     email: string;
-    telefone: string;
-    cidade: string;
-    estado: string;
+    phone: string;
+    city: string;
+    state: string;
 }
 
 class UserServices {
-    async create({ username, email, telefone, cidade, estado }: IUser) {
-        if (!username || !email || !telefone || !cidade || !estado) {
-            throw new Error("Por favor preencha todos os campos");
+    async create({ username, email, phone, city, state }: IUser) {
+        if (!username || !email || !phone || !city || !state) {
+            throw new Error("Por favor rellena todos los campos");
         }
     
         const usersRepository = getCustomRepository(UsersRepository);
@@ -22,16 +22,16 @@ class UserServices {
         const usernameAlreadyExists = await usersRepository.findOne({ username });
     
         if (usernameAlreadyExists) {
-            throw new Error("Username já está cadastrado");
+            throw new Error("El nombre de usuario ya está registrado");
         }
     
         const emailAlreadyExists = await usersRepository.findOne({ email });
     
         if (emailAlreadyExists) {
-            throw new Error("Email já está cadastrado");
+            throw new Error("El correo electrónico ya está registrado");
         }
     
-        const user = usersRepository.create({ username, email, telefone, cidade, estado });
+        const user = usersRepository.create({ username, email, phone, city, state });
     
         await usersRepository.save(user);
     
@@ -76,7 +76,7 @@ class UserServices {
 
     async search(search: string) {
         if (!search) {
-            throw new Error("Por favor preencha o campo de busca");
+            throw new Error("Por favor complete el campo de búsqueda");
         }
     
         const usersRepository = getCustomRepository(UsersRepository);
@@ -85,9 +85,9 @@ class UserServices {
             .createQueryBuilder()
             .where("username like :search", { search: `%${search}%` })
             .orWhere("email like :search", { search: `%${search}%` })
-            .orWhere("telefone like :search", { search: `%${search}%` })
-            .orWhere("cidade like :search", { search: `%${search}%` })
-            .orWhere("estado like :search", { search: `%${search}%` })
+            .orWhere("phone like :search", { search: `%${search}%` })
+            .orWhere("city like :search", { search: `%${search}%` })
+            .orWhere("state like :search", { search: `%${search}%` })
             .getMany();
     
         return user;
@@ -95,13 +95,13 @@ class UserServices {
     }
 
 
-    async update({ id, username, email, telefone, cidade, estado }: IUser) {
+    async update({ id, username, email, phone, city, state }: IUser) {
         const usersRepository = getCustomRepository(UsersRepository);
     
         const user = await usersRepository
             .createQueryBuilder()
             .update(User)
-            .set({ username, email, telefone, cidade, estado })
+            .set({ username, email, phone, city, state })
             .where("id = :id", { id })
             .execute();
     

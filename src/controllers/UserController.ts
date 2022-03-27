@@ -5,7 +5,7 @@ import UserService from "../services/UserService";
 class UserController {
 
     async create(request: Request, response: Response) {
-        const { username, email, telefone, cidade, estado } = request.body;
+        const { username, email, phone, city, state } = request.body;
     
         const createUserService = new UserService();
     
@@ -13,9 +13,9 @@ class UserController {
             await createUserService.create({
                 username,
                 email,
-                telefone,
-                cidade,
-                estado
+                phone,
+                city,
+                state
             }).then(() => {
                 response.render("message", {
                 message: "Usuario registrado con exito"
@@ -95,12 +95,12 @@ class UserController {
 
 
     async update(request: Request, response: Response) {
-        const { id, username, email, telefone, cidade, estado } = request.body;
+        const { id, username, email, phone, city, state } = request.body;
     
         const updateUserService = new UserService();
     
         try {
-            await updateUserService.update({ id, username, email, telefone, cidade, estado }).then(() => {
+            await updateUserService.update({ id, username, email, phone, city, state }).then(() => {
                 response.render("message", {
                 message: "Usuario actualizado con exito"
             });
