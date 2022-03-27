@@ -1,3 +1,7 @@
+creacion de migraciones: yarn typeorm migration:generate -n "nombre de la migracion"
+
+
+
 # CRUD Node.js
 CRUD made with Node.js, Express, TypeScript, TypeORM, EJS &amp; SQLite.
 
