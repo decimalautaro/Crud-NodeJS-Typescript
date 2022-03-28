@@ -80,7 +80,7 @@ class UserServices {
         }
     
         const usersRepository = getCustomRepository(UsersRepository);
-    
+
         const user = await usersRepository
             .createQueryBuilder()
             .where("username like :search", { search: `%${search}%` })

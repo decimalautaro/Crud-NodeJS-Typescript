@@ -3,8 +3,10 @@ import "express-async-errors";
 import express, { Request, Response, NextFunction } from "express";
 import path from "path";
 import { router } from "../routes/user-route";
+import { routerProduct } from "../routes/product-route";
 import "./database";
 import morgan from "morgan";
+
 
 
 const app = express();
@@ -20,6 +22,7 @@ app.use(morgan('dev'));
 
 //rutas
 app.use(router);
+app.use(routerProduct);
 
 
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
