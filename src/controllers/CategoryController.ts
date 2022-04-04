@@ -5,9 +5,9 @@ import CategoryService from "../services/CategoryService";
 class CategoryController {
 
     async create(request: Request, response: Response) {
-        const { name} = request.body;
+        const { name } = request.body;
     
-        const createCategoryService = new CategoryController();
+        const createCategoryService = new CategoryService();
     
         try {
             await createCategoryService.create({
@@ -30,7 +30,7 @@ class CategoryController {
     async delete(request: Request, response: Response) {
         const { id } = request.body;
     
-        const deleteProductService = new CategoryController();
+        const deleteCategoryService = new CategoryService();
     
         try {
             await deleteCategoryService.delete(id).then(() => {
@@ -50,9 +50,9 @@ class CategoryController {
         let { id } = request.query;
         id = id.toString();
     
-        const getProductDataService = new CategoryController();
+        const editCategorytDataService = new CategoryController();
     
-        const category = await getCategoryDataService.edit(id);
+        const category = await editCategorytDataService.edit(id);
     
         return response.render("./products/product-edit", {
             category: category
@@ -61,9 +61,9 @@ class CategoryController {
 
 
     async list(request: Request, response: Response) {
-        const listUsersService = new CategoryController();
+        const listCategoryService = new CategoryController();
     
-        const products = await listCategorysService.list();
+        const products = await listCategoryService.list();
     
             return response.render("./products/product", {
                 products: products
