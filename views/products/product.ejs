@@ -32,10 +32,10 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="./add">Agregar producto</a>
+            <a class="nav-link active" aria-current="page" href="./add-product">Agregar producto</a>
           </li>
         </ul>
-        <form class="d-flex" action="../products/search.ejs" method="GET">
+        <form class="d-flex" action="./search-product" method="GET">
           <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
           <button class="btn secondary-btn" type="submit">Buscar</button>
         </form>
@@ -83,7 +83,7 @@
             <td>
               <div class="row">
                 <div class="row">
-                  <form action="./edit" method="GET">
+                  <form action="./edit-product" method="GET">
                     <input type="hidden" name="id" value="<%= product.id %>">
                     <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
                   </form>
@@ -104,7 +104,7 @@
     <br>
     <br>
     <div class="float-start">
-      <a href="./add" class="btn primary-btn">Agregar producto</a>
+      <a href="./add-product" class="btn primary-btn">Agregar producto</a>
     </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
