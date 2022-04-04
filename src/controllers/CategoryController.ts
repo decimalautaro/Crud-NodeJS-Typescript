@@ -5,7 +5,7 @@ import CategoryService from "../services/CategoryService";
 class CategoryController {
 
     async create(request: Request, response: Response) {
-        const { name, price, category} = request.body;
+        const { name} = request.body;
     
         const createCategoryService = new CategoryController();
     

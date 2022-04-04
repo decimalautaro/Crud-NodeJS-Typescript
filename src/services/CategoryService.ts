@@ -1,6 +1,6 @@
 import { Double, getCustomRepository } from "typeorm";
 import { Category } from "../entities/Category";
-import { CategoriesRepository } from "../repositories/CategoriesRepository";
+import { CategoriesRepository } from "../repositories/CategoryRepository";
 
 interface ICategory {
     id?: string
