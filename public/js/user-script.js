@@ -4,11 +4,11 @@ function counter() {
   let timerDiv = document.getElementById("timer");
 
   let timer = setInterval(function () {
-    timerDiv.innerHTML = `Volviendo a inicio en  ${countdown}`;
+    timerDiv.innerHTML = `Volviendo a listar usuarios en  ${countdown}`;
     countdown--;
     if (countdown === 0) {
       clearInterval(timer);
-      window.location.href = "./"
+      window.location.href = "./users"
     }
   }, 1000);
 }

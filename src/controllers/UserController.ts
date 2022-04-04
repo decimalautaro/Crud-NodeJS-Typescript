@@ -17,12 +17,12 @@ class UserController {
                 city,
                 state
             }).then(() => {
-                response.render("./users/message", {
+                response.render("./users/user-message", {
                 message: "Usuario registrado con exito"
             });
             });
         } catch (err) {
-            response.render("./users/message", {
+            response.render("./users/user-message", {
             message: `Error al registrar el usuario: ${err.message}`
             });
         }
@@ -37,12 +37,12 @@ class UserController {
     
         try {
             await deleteUserService.delete(id).then(() => {
-                response.render("./users/message", {
+                response.render("./users/user-message", {
                 message: "Usuario eliminado con exito"
             });
         });
         } catch (err) {
-            response.render("./users/message", {
+            response.render("./users/user-message", {
             message: `Error al eliminar el usaurio: ${err.message}`
             });
         }
@@ -57,7 +57,7 @@ class UserController {
     
         const user = await getUserDataService.edit(id);
     
-        return response.render("./users/edit", {
+        return response.render("./users/user-edit", {
         user: user
         });
     }
@@ -82,12 +82,12 @@ class UserController {
     
         try {
             const users = await searchUserService.search(search);
-            response.render("./users/search", {
+            response.render("./users/user-search", {
                 users: users,
                 search: search
         });
         } catch (err) {
-            response.render("./users/message", {
+            response.render("./users/user-message", {
             message: `Error al buscar el usuario: ${err.message}`
         });
         }
@@ -101,12 +101,12 @@ class UserController {
     
         try {
             await updateUserService.update({ id, username, email, phone, city, state }).then(() => {
-                response.render("./users/message", {
+                response.render("./users/user-message", {
                 message: "Usuario actualizado con exito"
             });
         });
         } catch (err) {
-            response.render("./users/message", {
+            response.render("./users/user-message", {
             message: `Error al actualizar el usuario: ${err.message}`
         });
         }

@@ -10,7 +10,7 @@ const productController = new ProductController();
 routerProduct.get("/products", productController.list);
 
 routerProduct.get("/add", (request, response) => {
-  response.render("add");
+  response.render("../views/products/add");
 });
 
 routerProduct.post("/add-product", productController.create);

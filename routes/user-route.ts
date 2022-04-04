@@ -11,18 +11,18 @@ router.get("/", (request, response) => {
 });
 router.get("/users", userController.list);
 
-router.get("/add", (request, response) => {
-  response.render("../views/users/add");
+router.get("/add-user", (request, response) => {
+  response.render("../views/users/user-add");
 });
 
-router.post("/add-user", userController.create);
+router.post("/user-add", userController.create);
 
 router.get("/search", userController.search);
 
-router.get("/edit", userController.edit);
+router.get("/user-edit", userController.edit);
 
 router.post("/edit-user", userController.update);
 
-router.post("/delete-user", userController.delete);
+router.post("/user-delete", userController.delete);
 
 export { router };
