@@ -6,6 +6,7 @@ import { router } from "../routes/user-route";
 import { routerProduct } from "../routes/product-route";
 import "./database";
 import morgan from "morgan";
+import { routerCategory } from "../routes/category-route";
 
 
 
@@ -23,6 +24,7 @@ app.use(morgan('dev'));
 //rutas
 app.use(router);
 app.use(routerProduct);
+app.use(routerCategory);
 
 
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {

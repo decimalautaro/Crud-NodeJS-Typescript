@@ -2,7 +2,7 @@ import { Double, getCustomRepository } from "typeorm";
 import { Product } from "../entities/Product";
 import { ProductsRepository } from "../repositories/ProductsRepository";
 
-interface IUser {
+interface IProduct {
     id?: string
     name: string;
     price: number;
@@ -11,7 +11,7 @@ interface IUser {
 }
 
 class ProductServices {
-    async create({ name, price, category }: IUser) {
+    async create({ name, price, category }: IProduct) {
         if (!name || !price || !category) {
             throw new Error("Por favor rellena todos los campos");
         }
@@ -93,7 +93,7 @@ class ProductServices {
     }
 
 
-    async update({ id, name, price, category }: IUser) {
+    async update({ id, name, price, category }: IProduct) {
         const productsRepository = getCustomRepository(ProductsRepository);
     
         const product = await productsRepository
