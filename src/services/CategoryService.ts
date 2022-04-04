@@ -20,7 +20,7 @@ class CategoryServices {
         const nameAlreadyExists = await categoriesRepository.findOne({ name });
     
         if (nameAlreadyExists) {
-            throw new Error("El nombre del producto ya está registrado");
+            throw new Error("El nombre de la categoria ya está registrado");
         }
     
         
@@ -78,8 +78,7 @@ class CategoryServices {
         const category = await categoriesRepository
             .createQueryBuilder()
             .where("name like :search", { search: `%${search}%` })
-            .orWhere("price like :search", { search: `%${search}%` })
-            .orWhere("category like :search", { search: `%${search}%` })
+            
 
             .getMany();
     

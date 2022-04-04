@@ -14,13 +14,13 @@ class CategoryController {
                 name
 
             }).then(() => {
-                response.render("./products/product-message", {
-                message: "Producto registrado con exito"
+                response.render("./category/category-message", {
+                message: "Categoria registrado con exito"
             });
             });
         } catch (err) {
-            response.render("./products/product-message", {
-            message: `Error al registrar el producto: ${err.message}`
+            response.render("./category/category-message", {
+            message: `Error al registrar la categoria: ${err.message}`
             });
         }
     
@@ -34,13 +34,13 @@ class CategoryController {
     
         try {
             await deleteCategoryService.delete(id).then(() => {
-                response.render("./products/product-message", {
-                message: "Producto eliminado con exito"
+                response.render("./category/category-message", {
+                message: "Categoria eliminada con exito"
             });
         });
         } catch (err) {
-            response.render("./products/product-message", {
-            message: `Error al eliminar el producto: ${err.message}`
+            response.render("./category/category-message", {
+            message: `Error al eliminar la categoria: ${err.message}`
             });
         }
     }
@@ -54,7 +54,7 @@ class CategoryController {
     
         const category = await editCategorytDataService.edit(id);
     
-        return response.render("./products/product-edit", {
+        return response.render("./category/category-edit", {
             category: category
         });
     }
@@ -63,10 +63,10 @@ class CategoryController {
     async list(request: Request, response: Response) {
         const listCategoryService = new CategoryController();
     
-        const products = await listCategoryService.list();
+        const category = await listCategoryService.list();
     
-            return response.render("./products/product", {
-                products: products
+            return response.render("./category/category", {
+                category: category
         });
     }
 
@@ -79,32 +79,32 @@ class CategoryController {
     
         try {
             const category = await searchCategoryService.search(search);
-            response.render("./products/product-search", {
+            response.render("./category/category-search", {
                 category: category,
                 search: search
         });
         } catch (err) {
-            response.render("./products/product-message", {
-            message: `Error al buscar el producto: ${err.message}`
+            response.render("./category/category-message", {
+            message: `Error al buscar la categoria: ${err.message}`
         });
         }
     }
 
 
     async update(request: Request, response: Response) {
-        const { id, name, price, category} = request.body;
+        const { id, name} = request.body;
     
         const updateCategoryService = new CategoryController();
     
         try {
-            await updateCategoryService.update({ id, name}).then(() => {
-                response.render("./products/product-message", {
-                message: "Producto actualizado con exito"
+            await updateCategoryService.update({ id, name }).then(() => {
+                response.render("./category/category-message", {
+                message: "Categoria actualizada con exito"
             });
         });
         } catch (err) {
-            response.render("./products/product-message", {
-            message: `Error al actualizar el producto: ${err.message}`
+            response.render("./category/category-message", {
+            message: `Error al actualizar la categoria: ${err.message}`
         });
         }
     
