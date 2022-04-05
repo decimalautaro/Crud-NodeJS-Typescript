@@ -50,7 +50,7 @@ class CategoryController {
         let { id } = request.query;
         id = id.toString();
     
-        const editCategorytDataService = new CategoryController();
+        const editCategorytDataService = new CategoryService();
     
         const category = await editCategorytDataService.edit(id);
     
@@ -61,7 +61,7 @@ class CategoryController {
 
 
     async list(request: Request, response: Response) {
-        const listCategoryService = new CategoryController();
+        const listCategoryService = new CategoryService();
     
         const category = await listCategoryService.list();
     
@@ -75,7 +75,7 @@ class CategoryController {
         let { search } = request.query;
         search = search.toString();
     
-        const searchCategoryService = new CategoryController();
+        const searchCategoryService = new CategoryService();
     
         try {
             const category = await searchCategoryService.search(search);
@@ -94,7 +94,7 @@ class CategoryController {
     async update(request: Request, response: Response) {
         const { id, name} = request.body;
     
-        const updateCategoryService = new CategoryController();
+        const updateCategoryService = new CategoryService();
     
         try {
             await updateCategoryService.update({ id, name }).then(() => {
