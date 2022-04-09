@@ -62,7 +62,7 @@ class CategoryServices {
     async list() {
         const categoriesRepository = getCustomRepository(CategoriesRepository);
     
-        const category = await categoriesRepository.find();
+        const category= await categoriesRepository.find();
     
         return category;
     }

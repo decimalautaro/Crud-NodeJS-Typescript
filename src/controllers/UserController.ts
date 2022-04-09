@@ -5,13 +5,14 @@ import UserService from "../services/UserService";
 class UserController {
 
     async create(request: Request, response: Response) {
-        const { username, email, phone, city, state } = request.body;
+        const { username, password, email, phone, city, state } = request.body;
     
         const createUserService = new UserService();
     
         try {
             await createUserService.create({
                 username,
+                password,
                 email,
                 phone,
                 city,
@@ -95,12 +96,12 @@ class UserController {
 
 
     async update(request: Request, response: Response) {
-        const { id, username, email, phone, city, state } = request.body;
+        const { id, username, password, email, phone, city, state } = request.body;
     
         const updateUserService = new UserService();
     
         try {
-            await updateUserService.update({ id, username, email, phone, city, state }).then(() => {
+            await updateUserService.update({ id, username, password, email, phone, city, state }).then(() => {
                 response.render("./users/user-message", {
                 message: "Usuario actualizado con exito"
             });

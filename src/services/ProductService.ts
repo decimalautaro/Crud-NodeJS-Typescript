@@ -3,24 +3,25 @@ import { Product } from "../entities/Product";
 import { ProductsRepository } from "../repositories/ProductsRepository";
 
 interface IProduct {
-    id?: string
-    name: string;
+    id?: string;
+    nameProduct: string;
     price: number;
-    category: string;
+    type: "varchar";
+    categoryId: string;
     
 }
 
 class ProductServices {
-    async create({ name, price, category }: IProduct) {
-        if (!name || !price || !category) {
+    async create({ nameProduct, price, type, categoryId}: IProduct) {
+        if (!nameProduct || !price || !type || !categoryId) {
             throw new Error("Por favor rellena todos los campos");
         }
     
         const productsRepository = getCustomRepository(ProductsRepository);
     
-        const nameAlreadyExists = await productsRepository.findOne({ name });
+        const nameProductAlreadyExists = await productsRepository.findOne({ nameProduct });
     
-        if (nameAlreadyExists) {
+        if (nameProductAlreadyExists) {
             throw new Error("El nombre del producto ya está registrado");
         }
     
@@ -29,8 +30,19 @@ class ProductServices {
         if (priceAlreadyExists) {
             throw new Error("El precio ya está registrado");
         }
+        const typeAlreadyExists = await productsRepository.findOne({ type });
     
-        const product = productsRepository.create({ name, price, category});
+        if (typeAlreadyExists) {
+            throw new Error("El tipo de producto ya está registrado");
+        }
+
+        const categoryIdAlreadyExists = await productsRepository.findOne({ categoryId });
+    
+        if (categoryIdAlreadyExists) {
+            throw new Error("La categoria ya está registradoa");
+        }
+        
+        const product = productsRepository.create({ nameProduct, price, type, categoryId});
     
         await productsRepository.save(product);
     
@@ -84,7 +96,8 @@ class ProductServices {
             .createQueryBuilder()
             .where("name like :search", { search: `%${search}%` })
             .orWhere("price like :search", { search: `%${search}%` })
-            .orWhere("category like :search", { search: `%${search}%` })
+            .orWhere("type like :search", { search: `%${search}%` })
+            .orWhere("categoryId like :search", { search: `%${search}%` })
 
             .getMany();
     
@@ -93,13 +106,13 @@ class ProductServices {
     }
 
 
-    async update({ id, name, price, category }: IProduct) {
+    async update({ id,nameProduct, price, type, categoryId }: IProduct) {
         const productsRepository = getCustomRepository(ProductsRepository);
     
         const product = await productsRepository
             .createQueryBuilder()
             .update(Product)
-            .set({ name, price, category })
+            .set({ nameProduct, price, type, categoryId })
             .where("id = :id", { id })
             .execute();
     

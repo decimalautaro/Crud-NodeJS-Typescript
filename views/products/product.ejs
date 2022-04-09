@@ -54,6 +54,7 @@
       <thead>
         <th scope="col">Nombre</th>
         <th scope="col">Precio</th>
+        <th scope="col">Tipo</th>
         <th scope="col">Categoria</th>
         <th scope="col">Creación</th>
         <th scope="col">Actualización</th>
@@ -63,10 +64,13 @@
         <% products.forEach(function(product) { %>
           <tr>
             <td>
-              <%= product.name %>
+              <%= product.nameProduct %>
             </td>
             <td>
               <%= product.price %>
+            </td>
+            <td>
+              <%= product.type %>
             </td>
             <td>
               <%= product.category %>

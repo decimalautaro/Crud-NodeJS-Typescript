@@ -5,6 +5,7 @@ import { UsersRepository } from "../repositories/UsersRepository";
 interface IUser {
     id?: string
     username: string;
+    password: string;
     email: string;
     phone: string;
     city: string;
@@ -12,8 +13,8 @@ interface IUser {
 }
 
 class UserServices {
-    async create({ username, email, phone, city, state }: IUser) {
-        if (!username || !email || !phone || !city || !state) {
+    async create({ username, password, email, phone, city, state }: IUser) {
+        if (!username || !password || !email || !phone || !city || !state) {
             throw new Error("Por favor rellena todos los campos");
         }
     
@@ -24,6 +25,11 @@ class UserServices {
         if (usernameAlreadyExists) {
             throw new Error("El nombre de usuario ya está registrado");
         }
+        const passwordAlreadyExists = await usersRepository.findOne({ password });
+    
+        if (passwordAlreadyExists) {
+            throw new Error("La contraseña ya está registrada");
+        }
     
         const emailAlreadyExists = await usersRepository.findOne({ email });
     
@@ -31,7 +37,7 @@ class UserServices {
             throw new Error("El correo electrónico ya está registrado");
         }
     
-        const user = usersRepository.create({ username, email, phone, city, state });
+        const user = usersRepository.create({ username, password, email, phone, city, state });
     
         await usersRepository.save(user);
     
@@ -85,6 +91,7 @@ class UserServices {
             .createQueryBuilder()
             .where("username like :search", { search: `%${search}%` })
             .orWhere("email like :search", { search: `%${search}%` })
+            .orWhere("password like :search", { search: `%${search}%` })
             .orWhere("phone like :search", { search: `%${search}%` })
             .orWhere("city like :search", { search: `%${search}%` })
             .orWhere("state like :search", { search: `%${search}%` })
@@ -95,13 +102,13 @@ class UserServices {
     }
 
 
-    async update({ id, username, email, phone, city, state }: IUser) {
+    async update({ id, username, password, email, phone, city, state }: IUser) {
         const usersRepository = getCustomRepository(UsersRepository);
     
         const user = await usersRepository
             .createQueryBuilder()
             .update(User)
-            .set({ username, email, phone, city, state })
+            .set({ username, password, email, phone, city, state })
             .where("id = :id", { id })
             .execute();
     

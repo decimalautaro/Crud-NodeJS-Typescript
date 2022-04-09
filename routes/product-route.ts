@@ -24,3 +24,4 @@ routerProduct.post("/edit-product", productController.update);
 routerProduct.post("/delete-product", productController.delete);
 
 export { routerProduct };
+

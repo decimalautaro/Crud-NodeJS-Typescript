@@ -5,15 +5,16 @@ import ProductService from "../services/ProductService";
 class ProductController {
 
     async create(request: Request, response: Response) {
-        const { name, price, category} = request.body;
+        const { nameProduct, price, type, categoryId} = request.body;
     
         const createProductService = new ProductService();
     
         try {
             await createProductService.create({
-                name,
+                nameProduct,
                 price,
-                category,
+                type,
+                categoryId,
             }).then(() => {
                 response.render("./products/product-message", {
                 message: "Producto registrado con exito"
@@ -93,12 +94,12 @@ class ProductController {
 
 
     async update(request: Request, response: Response) {
-        const { id, name, price, category} = request.body;
+        const { id, nameProduct, price, type, categoryId} = request.body;
     
         const updateProductService = new ProductService();
     
         try {
-            await updateProductService.update({ id, name, price, category }).then(() => {
+            await updateProductService.update({ id, nameProduct, price, type, categoryId }).then(() => {
                 response.render("./products/product-message", {
                 message: "Producto actualizado con exito"
             });

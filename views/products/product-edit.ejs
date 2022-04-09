@@ -52,8 +52,8 @@
       <input type="hidden" name="id" value="<%= product.id %>">
       <div class="row">
         <div class="col-12">
-          <label for="name" class="form-label">Nombre</label>
-          <input type="text" name="name" id="name" class="form-control" value="<%= product.name %>" required>
+          <label for="nameProduct" class="form-label">Nombre</label>
+          <input type="text" name="nameProduct" id="nameProduct" class="form-control" value="<%= product.nameProduct %>" required>
         </div>
       </div>
       <br>
@@ -62,10 +62,24 @@
           <label for="price" class="form-label">Precio</label>
           <input type="text" name="price" id="price" class="form-control" value="<%= product.price %>" required>
         </div>
+        
         <div class="col-6">
-          <label for="category" class="form-label">Categoria</label>
-          <input type="text" name="category" id="category" class="form-control" value="<%= product.category %>" required>
-        </div>
+          <label for="type" class="form-label">Precio</label>
+          <input type="text" name="type" id="type" class="form-control" value="<%= product.type %>">
+        </div> 
+      </div>
+      <div class="col-6">
+        <label for="categoryId" class="form-label">Categoria</label>
+        <select name="categoryId" id="categoryId" class="form-select">
+          <option value="" selected disabled>Seleccione Categoria</option>
+          <% category.forEach(function(category){ %>
+            <option value="<%= category.id %>">
+              <%= category.name %>
+            </option>
+            <%})%>
+        </select>
+        <br>        
+
       </div>
       <br>
 
