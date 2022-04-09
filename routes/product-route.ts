@@ -9,9 +9,7 @@ const productController = new ProductController();
 
 routerProduct.get("/products", productController.list);
 
-routerProduct.get("/add-product", (request, response) => {
-  response.render("../views/products/product-add");
-});
+routerProduct.get("/add-product", productController.add);
 
 routerProduct.post("/add-product", productController.create);
 

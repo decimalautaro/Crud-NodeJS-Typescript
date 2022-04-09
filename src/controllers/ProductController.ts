@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import CategoryServices , { categoryServices } from "../services/CategoryService";
 import ProductService from "../services/ProductService";
 
 
@@ -29,6 +30,12 @@ class ProductController {
     }
 
 
+    async add(request:Request, response: Response) {
+        const category = await categoryServices.list();
+        return response.render("./products/product-add",{category})
+    }
+
+
     async delete(request: Request, response: Response) {
         const { id } = request.body;
     
@@ -55,9 +62,13 @@ class ProductController {
         const getProductDataService = new ProductService();
     
         const product = await getProductDataService.edit(id);
-    
+        const listCategory = new CategoryServices()
+
+        const category = await listCategory.list()
         return response.render("./products/product-edit", {
-            product: product
+          product: product,
+          category: category
+
         });
     }
 
@@ -72,6 +83,7 @@ class ProductController {
         });
     }
 
+    
 
     async search(request: Request, response: Response) {
         let { search } = request.query;
@@ -114,6 +126,5 @@ class ProductController {
 
 
 }
-
 
 export default ProductController;

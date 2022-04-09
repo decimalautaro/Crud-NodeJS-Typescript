@@ -64,24 +64,21 @@
         </div>
         
         <div class="col-6">
-          <label for="type" class="form-label">Precio</label>
+          <label for="type" class="form-label">Tipo</label>
           <input type="text" name="type" id="type" class="form-control" value="<%= product.type %>">
         </div> 
       </div>
       <div class="col-6">
-        <label for="categoryId" class="form-label">Categoria</label>
+        <label for="categoryId" class="form-label">Categoría</label>
         <select name="categoryId" id="categoryId" class="form-select">
-          <option value="" selected disabled>Seleccione Categoria</option>
-          <% category.forEach(function(category){ %>
+          <option value="" selected disabled>Seleccione Categoría</option>
+          <%  category.forEach(function(category){ %>
             <option value="<%= category.id %>">
               <%= category.name %>
             </option>
             <%})%>
         </select>
-        <br>        
-
-      </div>
-      <br>
+    </div>
 
       <br>
       <div class="row">
