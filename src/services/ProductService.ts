@@ -80,8 +80,8 @@ class ProductServices {
         const productsRepository = getCustomRepository(ProductsRepository);
     
         const products = await productsRepository.find();
-    
         return products;
+        
     }
 
 

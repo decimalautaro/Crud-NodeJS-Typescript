@@ -19,7 +19,7 @@ class Product {
   length: 1;
 
   @Column()
-  categoryId: string
+  categoryId: string;
 
   @ManyToOne(() => Category, category => category.products)
   @JoinColumn({ name: "categoryId"})

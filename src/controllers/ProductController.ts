@@ -74,9 +74,9 @@ class ProductController {
 
 
     async list(request: Request, response: Response) {
-        const listUsersService = new ProductService();
+        const listProductsService = new ProductService();
     
-        const products = await listUsersService.list();
+        const products = await listProductsService.list();
     
             return response.render("./products/product", {
                 products: products
