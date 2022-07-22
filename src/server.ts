@@ -2,11 +2,11 @@ import "reflect-metadata";
 import "express-async-errors";
 import express, { Request, Response, NextFunction } from "express";
 import path from "path";
-import { router } from "../routes/user-route";
-import { routerProduct } from "../routes/product-route";
+import { router } from "../src/routes/user-route";
+import { routerProduct } from "../src/routes/product-route";
 import "./database";
 import morgan from "morgan";
-import { routerCategory } from "../routes/category-route";
+import { routerCategory } from "../src/routes/category-route";
 
 
 
