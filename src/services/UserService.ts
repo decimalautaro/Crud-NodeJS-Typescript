@@ -25,11 +25,6 @@ class UserServices {
         if (usernameAlreadyExists) {
             throw new Error("El nombre de usuario ya está registrado");
         }
-        const passwordAlreadyExists = await usersRepository.findOne({ password });
-    
-        if (passwordAlreadyExists) {
-            throw new Error("La contraseña ya está registrada");
-        }
     
         const emailAlreadyExists = await usersRepository.findOne({ email });
     
