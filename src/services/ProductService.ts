@@ -24,24 +24,7 @@ class ProductServices {
         if (nameProductAlreadyExists) {
             throw new Error("El nombre del producto ya está registrado");
         }
-    
-        const priceAlreadyExists = await productsRepository.findOne({ price });
-    
-        if (priceAlreadyExists) {
-            throw new Error("El precio ya está registrado");
-        }
-        const typeAlreadyExists = await productsRepository.findOne({ type });
-    
-        if (typeAlreadyExists) {
-            throw new Error("El tipo de producto ya está registrado");
-        }
 
-        const categoryIdAlreadyExists = await productsRepository.findOne({ categoryId });
-    
-        if (categoryIdAlreadyExists) {
-            throw new Error("La categoria ya está registradoa");
-        }
-        
         const product = productsRepository.create({ nameProduct, price, type, categoryId});
     
         await productsRepository.save(product);
