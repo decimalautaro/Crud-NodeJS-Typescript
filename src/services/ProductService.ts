@@ -1,5 +1,7 @@
-import { Double, getCustomRepository } from "typeorm";
+import {getCustomRepository } from "typeorm";
 import { Product } from "../entities/Product";
+import { Category } from "../entities/Category";
+
 import { ProductsRepository } from "../repositories/ProductsRepository";
 
 interface IProduct {
@@ -19,11 +21,12 @@ class ProductServices {
     
         const productsRepository = getCustomRepository(ProductsRepository);
     
-        const nameProductAlreadyExists = await productsRepository.findOne({ nameProduct });
+        // const nameProductAlreadyExists = await productsRepository.findOne({ nameProduct });
     
-        if (nameProductAlreadyExists) {
-            throw new Error("El nombre del producto ya está registrado");
-        }
+        // if (nameProductAlreadyExists) {
+        //     throw new Error("El nombre del producto ya está registrado");
+        // }
+
 
         const product = productsRepository.create({ nameProduct, price, type, categoryId});
     
@@ -62,7 +65,7 @@ class ProductServices {
     async list() {
         const productsRepository = getCustomRepository(ProductsRepository);
     
-        const products = await productsRepository.find();
+        const products = await productsRepository.find({relations:["category"]});
         return products;
         
     }
