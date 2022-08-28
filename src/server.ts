@@ -12,14 +12,10 @@ import { routerCategory } from "../src/routes/category-route";
 
 const app = express();
 
-//inicializacion
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-
 //middlewares
 app.use(morgan('dev'));
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //rutas
 app.use(router);
