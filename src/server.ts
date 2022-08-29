@@ -8,27 +8,33 @@ import "./database";
 import morgan from "morgan";
 import { routerCategory } from "../src/routes/category-route";
 import flash from "connect-flash"
+import session from "express-session"
 
 
 const app = express();
+
 
 //middlewares
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(flash())
+
+
+// variables globales 
+// app.use((request, response, next) => {
+
+//   app.locals.success = request.flash("success")
+//   app.locals.error = request.flash("error")
+
+//   next()
+// });
 
 //rutas
 app.use(router);
 app.use(routerProduct);
 app.use(routerCategory);
 
-//variables globales 
-app.use((request, response, next) => {
-
-  app.locals.success = request.flash("success")
-  app.locals.error = request.flash("error")
-  next()
-});
 
 
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
