@@ -11,6 +11,8 @@
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
+    "@types/connect-flash": "^0.0.37",
+    "connect-flash": "^0.1.1",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
