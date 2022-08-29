@@ -7,7 +7,7 @@ import { routerProduct } from "../src/routes/product-route";
 import "./database";
 import morgan from "morgan";
 import { routerCategory } from "../src/routes/category-route";
-
+import flash from "connect-flash"
 
 
 const app = express();
@@ -21,6 +21,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(router);
 app.use(routerProduct);
 app.use(routerCategory);
+
+//variables globales 
+app.use((request, response, next) => {
+
+  app.locals.success = request.flash("success")
+  app.locals.error = request.flash("error")
+  next()
+});
 
 
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
