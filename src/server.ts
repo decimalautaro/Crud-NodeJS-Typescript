@@ -13,22 +13,30 @@ import session from "express-session"
 
 const app = express();
 
+//sesion de express-session
+app.use(session({
+  secret: "lautarodecima",
+  resave: false,
+  saveUninitialized: false,
+  // store: 
+}))
 
 //middlewares
+app.use(flash())
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(flash())
+
 
 
 // variables globales 
-// app.use((request, response, next) => {
+app.use((request, response, next) => {
 
-//   app.locals.success = request.flash("success")
-//   app.locals.error = request.flash("error")
+  app.locals.success = request.flash("success")
+  app.locals.error = request.flash("error")
 
-//   next()
-// });
+  next()
+});
 
 //rutas
 app.use(router);
