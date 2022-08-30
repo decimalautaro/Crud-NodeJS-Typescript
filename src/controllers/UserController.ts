@@ -99,7 +99,7 @@ class UserController {
     
         try {
             await updateUserService.update({ id, username, password, email, phone, city, state }).then(() => {
-                request.flash("success","Usuario eliminado exitosamente");
+                request.flash("success","Usuario actualizado exitosamente");
                 response.redirect("./users");
         });
         } catch (err) {
