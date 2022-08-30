@@ -18,17 +18,16 @@ class UserController {
                 city,
                 state
             }).then(() => {
-                response.render("./users/user-message", {
-                message: "Usuario registrado con exito"
-            });
+                request.flash("success","Usuario creado exitosamente");
+          response.redirect("./users");
             });
         } catch (err) {
-            response.render("./users/user-message", {
-            message: `Error al registrar el usuario: ${err.message}`
-            });
+            request.flash("error","Error al crear usuario"), err;
+        response.redirect("./users");
+            }
         }
     
-    }
+    
 
 
     async delete(request: Request, response: Response) {
@@ -38,16 +37,15 @@ class UserController {
     
         try {
             await deleteUserService.delete(id).then(() => {
-                response.render("./users/user-message", {
-                message: "Usuario eliminado con exito"
-            });
+                request.flash("success","Usuario eliminado exitosamente");
+                response.redirect("./users");
         });
         } catch (err) {
-            response.render("./users/user-message", {
-            message: `Error al eliminar el usaurio: ${err.message}`
-            });
+            request.flash("error","Error al eliminar el usuario"), err;
+            response.redirect("./users");
+            };
         }
-    }
+    
 
 
     async edit(request: Request, response: Response) {
@@ -88,9 +86,8 @@ class UserController {
                 search: search
         });
         } catch (err) {
-            response.render("./users/user-message", {
-            message: `Error al buscar el usuario: ${err.message}`
-        });
+            request.flash("error","Error al buscar el usuario"), err;
+            response.redirect("./users");
         }
     }
 
@@ -102,14 +99,12 @@ class UserController {
     
         try {
             await updateUserService.update({ id, username, password, email, phone, city, state }).then(() => {
-                response.render("./users/user-message", {
-                message: "Usuario actualizado con exito"
-            });
+                request.flash("success","Usuario eliminado exitosamente");
+                response.redirect("./users");
         });
         } catch (err) {
-            response.render("./users/user-message", {
-            message: `Error al actualizar el usuario: ${err.message}`
-        });
+            request.flash("error","Error al actualizar el usuario"), err;
+            response.redirect("./users");
         }
     
     }
