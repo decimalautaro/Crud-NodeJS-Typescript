@@ -87,8 +87,10 @@ class ProductController {
     
         try {
             const products = await searchProductService.search(search);
-            request.flash("success","Producto buscado exitosamente");
-            response.redirect("./products");
+            response.render("./products/product-search", {
+                products: products,
+                search: search
+        });
         } catch (err) {
             request.flash("error","Error al buscar el producto"), err;
         response.redirect("./products");
