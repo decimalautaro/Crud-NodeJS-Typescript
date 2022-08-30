@@ -70,7 +70,7 @@ class UserServices {
         const usersRepository = getCustomRepository(UsersRepository);
     
         const users = await usersRepository.find();
-    
+        
         return users;
     }
 
