@@ -1,0 +1,17 @@
+
+<link rel="stylesheet" href="../../public/css/alert.css">
+
+<% if (error != '') {%>
+    <div class="alert alert-danger alert-dismissible fade show col-8" role="alert">
+        <strong><%= error %></strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+
+<% if (success != '') {%>
+    <div class="alert alert-success alert-dismissible fade show col-8" role="alert">
+        <strong><%= success %></strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<% } %>
+    
