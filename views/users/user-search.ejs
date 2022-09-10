@@ -56,6 +56,7 @@
       <thead>
         <th scope="col">Usuario</th>
         <th scope="col">Contraseña</th>
+        <th scope="col">Nombre</th>
         <th scope="col">Email</th>
         <th scope="col">Telefono</th>
         <th scope="col">Departamento</th>
@@ -67,6 +68,9 @@
       <tbody>
         <% users.forEach(function(user) { %>
           <tr>
+            <td>
+              <%= user.name %>
+            </td>
             <td>
               <%= user.username %>
             </td>

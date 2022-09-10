@@ -2,13 +2,14 @@ import "reflect-metadata";
 import "express-async-errors";
 import express, { Request, Response, NextFunction } from "express";
 import path from "path";
-import { router } from "../src/routes/user-route";
+import { routerUser } from "../src/routes/user-route";
 import { routerProduct } from "../src/routes/product-route";
 import "./database";
 import morgan from "morgan";
 import { routerCategory } from "../src/routes/category-route";
 import flash from "connect-flash"
 import session from "express-session"
+import { router } from "./routes/autenticacion";
 
 
 const app = express();
@@ -40,6 +41,7 @@ app.use((request, response, next) => {
 
 //rutas
 app.use(router);
+app.use(routerUser);
 app.use(routerProduct);
 app.use(routerCategory);
 

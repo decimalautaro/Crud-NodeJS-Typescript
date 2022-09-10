@@ -4,6 +4,7 @@ import { UsersRepository } from "../repositories/UsersRepository";
 
 interface IUser {
     id?: string
+    name: string;
     username: string;
     password: string;
     email: string;
@@ -13,8 +14,8 @@ interface IUser {
 }
 
 class UserServices {
-    async create({ username, password, email, phone, city, state }: IUser) {
-        if (!username || !password || !email || !phone || !city || !state) {
+    async create({ name, username, password, email, phone, city, state }: IUser) {
+        if ( !name || !username || !password || !email || !phone || !city || !state) {
             throw new Error("Por favor rellena todos los campos");
         }
     
@@ -32,7 +33,7 @@ class UserServices {
             throw new Error("El correo electrónico ya está registrado");
         }
     
-        const user = usersRepository.create({ username, password, email, phone, city, state });
+        const user = usersRepository.create({ name, username, password, email, phone, city, state });
     
         await usersRepository.save(user);
     
@@ -84,6 +85,7 @@ class UserServices {
 
         const user = await usersRepository
             .createQueryBuilder()
+            .where("name like :search", { search: `%${search}%` })
             .where("username like :search", { search: `%${search}%` })
             .orWhere("email like :search", { search: `%${search}%` })
             .orWhere("password like :search", { search: `%${search}%` })
@@ -97,13 +99,13 @@ class UserServices {
     }
 
 
-    async update({ id, username, password, email, phone, city, state }: IUser) {
+    async update({ id, name, username, password, email, phone, city, state }: IUser) {
         const usersRepository = getCustomRepository(UsersRepository);
     
         const user = await usersRepository
             .createQueryBuilder()
             .update(User)
-            .set({ username, password, email, phone, city, state })
+            .set({ name, username, password, email, phone, city, state })
             .where("id = :id", { id })
             .execute();
     

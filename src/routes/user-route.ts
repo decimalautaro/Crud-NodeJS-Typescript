@@ -2,27 +2,27 @@ import { request, response, Router } from "express";
 import UserController from "../controllers/UserController"
 
 
-const router = Router();
+const routerUser = Router();
 
 const userController = new UserController();
 
-router.get("/", (request, response) => {
+routerUser.get("/", (request, response) => {
   response.render("../views/index");
 });
-router.get("/users", userController.list);
+routerUser.get("/users", userController.list);
 
-router.get("/add-user", (request, response) => {
+routerUser.get("/add-user", (request, response) => {
   response.render("../views/users/user-add");
 });
 
-router.post("/user-add", userController.create);
+routerUser.post("/user-add", userController.create);
 
-router.get("/search", userController.search);
+routerUser.get("/search", userController.search);
 
-router.get("/user-edit", userController.edit);
+routerUser.get("/user-edit", userController.edit);
 
-router.post("/edit-user", userController.update);
+routerUser.post("/edit-user", userController.update);
 
-router.post("/user-delete", userController.delete);
+routerUser.post("/user-delete", userController.delete);
 
-export { router };
+export { routerUser };

@@ -1,6 +1,7 @@
 creacion de migraciones: yarn typeorm migration:generate -n "nombre de la migracion"
+yarn typeorm migration:run
 
-
+min 2h guardar sesion en mysql
 
 # CRUD Node.js
 CRUD made with Node.js, Express, TypeScript, TypeORM, EJS &amp; SQLite.

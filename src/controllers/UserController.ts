@@ -5,12 +5,13 @@ import UserService from "../services/UserService";
 class UserController {
 
     async create(request: Request, response: Response) {
-        const { username, password, email, phone, city, state } = request.body;
+        const { name, username, password, email, phone, city, state } = request.body;
     
         const createUserService = new UserService();
     
         try {
             await createUserService.create({
+                name,
                 username,
                 password,
                 email,
@@ -22,7 +23,7 @@ class UserController {
           response.redirect("./users");
             });
         } catch (err) {
-            request.flash("error","Error al crear usuario"), err;
+            request.flash("error","ERROR, faltan llenar datos"), err;
         response.redirect("./users");
             }
         }
@@ -93,12 +94,12 @@ class UserController {
 
 
     async update(request: Request, response: Response) {
-        const { id, username, password, email, phone, city, state } = request.body;
+        const { id, name, username, password, email, phone, city, state } = request.body;
     
         const updateUserService = new UserService();
     
         try {
-            await updateUserService.update({ id, username, password, email, phone, city, state }).then(() => {
+            await updateUserService.update({ id, name, username, password, email, phone, city, state }).then(() => {
                 request.flash("success","Usuario actualizado exitosamente");
                 response.redirect("./users");
         });
