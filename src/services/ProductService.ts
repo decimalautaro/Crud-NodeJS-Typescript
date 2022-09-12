@@ -20,13 +20,6 @@ class ProductServices {
         }
     
         const productsRepository = getCustomRepository(ProductsRepository);
-    
-        // const nameProductAlreadyExists = await productsRepository.findOne({ nameProduct });
-    
-        // if (nameProductAlreadyExists) {
-        //     throw new Error("El nombre del producto ya está registrado");
-        // }
-
 
         const product = productsRepository.create({ nameProduct, price, type, categoryId});
     
