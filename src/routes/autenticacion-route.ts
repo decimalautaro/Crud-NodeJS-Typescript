@@ -33,8 +33,12 @@ router.post('/signin', (req: Request, res: Response, next) => {
 
 });
 
-router.get('/profile',(req:Request, res:Response)=>{
-    res.render('profile')
-})
+router.get('/logout', function(req: Request, res:Response, next) {
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      req.flash('message', 'Gracias por usar la app');
+      res.redirect('/signin');
+    });
+  });
 
 export { router };
