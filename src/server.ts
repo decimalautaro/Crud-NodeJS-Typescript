@@ -41,6 +41,7 @@ app.use((request, response, next) => {
 
   app.locals.success = request.flash("success")
   app.locals.error = request.flash("error")
+  app.locals.user = request.user;
 
   next()
 });

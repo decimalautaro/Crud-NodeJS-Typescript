@@ -33,4 +33,8 @@ router.post('/signin', (req: Request, res: Response, next) => {
 
 });
 
+router.get('/profile',(req:Request, res:Response)=>{
+    res.render('profile')
+})
+
 export { router };
