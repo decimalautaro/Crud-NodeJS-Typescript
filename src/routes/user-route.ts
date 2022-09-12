@@ -1,12 +1,12 @@
 import { request, response, Router } from "express";
 import UserController from "../controllers/UserController"
-
+import auth from '../lib/auth'
 
 const routerUser = Router();
 
 const userController = new UserController();
 
-routerUser.get("/", (request, response) => {
+routerUser.get("/", auth.isLoggedIn, (request, response) => {
   response.render("../views/index");
 });
 routerUser.get("/users", userController.list);
