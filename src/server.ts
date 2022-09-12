@@ -9,10 +9,14 @@ import morgan from "morgan";
 import { routerCategory } from "../src/routes/category-route";
 import flash from "connect-flash"
 import session from "express-session"
-import { router } from "./routes/autenticacion";
+import { router } from "./routes/autenticacion-route";
+import passport from 'passport';
 
-
+//inicializacion
 const app = express();
+require('./lib/passport');
+
+
 
 //sesion de express-session
 app.use(session({
@@ -27,6 +31,8 @@ app.use(flash())
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 
