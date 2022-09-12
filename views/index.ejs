@@ -42,14 +42,21 @@
         </ul>
        
       </div>
+
     </div>
   </nav>
   <br>
+  <div class="col-md-4 mx-auto">
+    <div class="card text-center">
+        <h3>Bienvenido <%= user.name %></h3>
+        <h4><%= user.username %></h4>
+        <a href="/products" class="btn btn-primary m-4">Agregar producto</a>
+    </div>
+  </div>
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
     crossorigin="anonymous"></script>
-  <script src="js/user-script.js"></script>
 </body>
 
 </html>

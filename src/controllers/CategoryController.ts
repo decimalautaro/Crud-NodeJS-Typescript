@@ -14,14 +14,12 @@ class CategoryController {
                 name
 
             }).then(() => {
-                response.render("./category/category-message", {
-                message: "Categoria registrado con exito"
-            });
+                request.flash("success","Categoria creada exitosamente");
+          response.redirect("./category");
             });
         } catch (err) {
-            response.render("./category/category-message", {
-            message: `Error al registrar la categoria: ${err.message}`
-            });
+            request.flash("error","Error al crear la categoria"), err;
+        response.redirect("./category");
         }
     
     }
@@ -34,14 +32,12 @@ class CategoryController {
     
         try {
             await deleteCategoryService.delete(id).then(() => {
-                response.render("./category/category-message", {
-                message: "Categoria eliminada con exito"
-            });
+                request.flash("success","Categoria eliminada exitosamente");
+          response.redirect("./category");
         });
         } catch (err) {
-            response.render("./category/category-message", {
-            message: `Error al eliminar la categoria: ${err.message}`
-            });
+            request.flash("error","Error al eliminar la categoria"), err;
+        response.redirect("./category");
         }
     }
 
@@ -83,6 +79,7 @@ class CategoryController {
                 category: category,
                 search: search
         });
+        
         } catch (err) {
             response.render("./category/category-message", {
             message: `Error al buscar la categoria: ${err.message}`
@@ -98,14 +95,12 @@ class CategoryController {
     
         try {
             await updateCategoryService.update({ id, name }).then(() => {
-                response.render("./category/category-message", {
-                message: "Categoria actualizada con exito"
-            });
+                request.flash("success","Categoria actualizada exitosamente");
+          response.redirect("./category");
         });
         } catch (err) {
-            response.render("./category/category-message", {
-            message: `Error al actualizar la categoria: ${err.message}`
-        });
+            request.flash("error","Error al actualizar la categoria"), err;
+        response.redirect("./products");
         }
     
     }
