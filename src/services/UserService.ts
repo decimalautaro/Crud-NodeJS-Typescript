@@ -65,6 +65,15 @@ class UserServices {
         return user;
     }
 
+    async buscarUsername(username: string) {
+        const usersRepository = getCustomRepository(UsersRepository);
+
+        const user = await usersRepository.find(
+            { where: { username: username } }
+        );
+
+        return user;
+    }
 
 
     async list() {
@@ -85,8 +94,8 @@ class UserServices {
 
         const user = await usersRepository
             .createQueryBuilder()
-            .where("name like :search", { search: `%${search}%` })
             .where("username like :search", { search: `%${search}%` })
+            .orWhere("name like :search", { search: `%${search}%` })
             .orWhere("email like :search", { search: `%${search}%` })
             .orWhere("password like :search", { search: `%${search}%` })
             .orWhere("phone like :search", { search: `%${search}%` })
