@@ -11,6 +11,7 @@ import flash from "connect-flash"
 import session from "express-session"
 import { router } from "./routes/autenticacion-route";
 import passport from 'passport';
+import { routerIndex } from "./routes";
 
 //inicializacion
 const app = express();
@@ -47,6 +48,7 @@ app.use((request, response, next) => {
 });
 
 //rutas
+app.use(routerIndex)
 app.use(router);
 app.use(routerUser);
 app.use(routerProduct);
