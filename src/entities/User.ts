@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn, OneToMany } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { Product } from "./Product";
 
 @Entity("users")
 class User {
@@ -27,6 +28,9 @@ class User {
 
   @Column()
   state: string;
+
+  @OneToMany(() => User, user => user.products, {eager:true})
+  products: Product[];
 
   @CreateDateColumn()
   created_at: Date;
