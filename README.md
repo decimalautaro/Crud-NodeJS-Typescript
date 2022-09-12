@@ -5,6 +5,8 @@ revertir migracion: yarn typeorm migration:revert
 min 2h guardar sesion en mysql
 ver video desde 3h 18 min
 
+ver video 3h 40min
+
 # CRUD Node.js
 CRUD made with Node.js, Express, TypeScript, TypeORM, EJS &amp; SQLite.
 
