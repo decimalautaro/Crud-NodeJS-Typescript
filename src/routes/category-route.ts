@@ -1,26 +1,26 @@
 import { request, response, Router } from "express";
 import CategoryController from "../controllers/CategoryController"
-
+import auth from '../lib/auth'
 
 const routerCategory = Router();
 
 const categoryController = new CategoryController();
 
 
-routerCategory.get("/category", categoryController.list);
+routerCategory.get("/category",auth.isLoggedIn, categoryController.list);
 
-routerCategory.get("/add-category", (request, response) => {
+routerCategory.get("/add-category",auth.isLoggedIn, (request, response) => {
   response.render("../views/category/category-add");
 });
 
-routerCategory.post("/add-category", categoryController.create);
+routerCategory.post("/add-category",auth.isLoggedIn, categoryController.create);
 
-routerCategory.get("/search-category", categoryController.search);
+routerCategory.get("/search-category",auth.isLoggedIn, categoryController.search);
 
-routerCategory.get("/edit-category", categoryController.edit);
+routerCategory.get("/edit-category",auth.isLoggedIn, categoryController.edit);
 
-routerCategory.post("/edit-category", categoryController.update);
+routerCategory.post("/edit-category",auth.isLoggedIn, categoryController.update);
 
-routerCategory.post("/delete-category", categoryController.delete);
+routerCategory.post("/delete-category",auth.isLoggedIn, categoryController.delete);
 
 export { routerCategory };
