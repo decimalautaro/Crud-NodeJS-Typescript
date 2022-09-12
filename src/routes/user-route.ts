@@ -6,9 +6,6 @@ const routerUser = Router();
 
 const userController = new UserController();
 
-routerUser.get("/", auth.isLoggedIn, (request, response) => {
-  response.render("../views/index");
-});
 routerUser.get("/users",auth.isLoggedIn, userController.list);
 
 routerUser.get("/add-user", (request, response) => {
