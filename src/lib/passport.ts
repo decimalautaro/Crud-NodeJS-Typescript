@@ -14,7 +14,7 @@ passport.use('local.signin', new LocalStrategy({
     passReqToCallback: true
 
 },async(req,username,password,done) =>{
-    console.log(req.body)
+
     const userService = new UserService();
 
     const users: User[] = await userService.buscarUsername(username)
