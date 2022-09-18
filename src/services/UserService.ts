@@ -1,5 +1,6 @@
 import { getCustomRepository } from "typeorm";
 import { User } from "../entities/User";
+import { helpers } from "../lib/helpers";
 import { UsersRepository } from "../repositories/UsersRepository";
 
 interface IUser {
@@ -114,7 +115,13 @@ class UserServices {
         const user = await usersRepository
             .createQueryBuilder()
             .update(User)
-            .set({ name, username, password, email, phone, city, state })
+            .set({ name,
+                username,
+                password: await helpers.encryptPassword(password), 
+                email,
+                phone,
+                city,
+                state })
             .where("id = :id", { id })
             .execute();
     

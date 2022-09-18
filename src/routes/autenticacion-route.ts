@@ -42,14 +42,6 @@ router.get("/profile", auth.isLoggedIn, (req: Request, res: Response) => {
     res.render("profile");
   });
 
-// router.get('/logout',  function(req: Request, res:Response, next) {
-//     req.logout(function(err) {
-//       if (err) { return next(err); }
-//       req.flash('message', 'Gracias por usar la app');
-//       res.redirect('/signin');
-//     });
-//   });
-
   router.get('/logout', (req, res, next) => {
     req.logOut( (err: any) => next)
     req.flash('message', 'Gracias por usar la app');
