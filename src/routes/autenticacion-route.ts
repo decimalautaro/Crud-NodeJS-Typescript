@@ -12,7 +12,7 @@ router.get('/signup', auth.isNotLoggedIn, (req: Request, res: Response) => {
     res.render('auth/signup')
 })
 
-router.post('/signup', auth.isNotLoggedIn, auth.isNotLoggedIn, passport.authenticate('local.signup', {
+router.post('/signup', passport.authenticate('local.signup', {
     successRedirect: '/signin',
     failureRedirect: '/signup',
     failureFlash: true
@@ -21,11 +21,11 @@ router.post('/signup', auth.isNotLoggedIn, auth.isNotLoggedIn, passport.authenti
 
 // SIGNIN
 
-router.get('/signin', auth.isNotLoggedIn, (req: Request, res: Response) => {
+router.get('/signin',auth.isNotLoggedIn, (req: Request, res: Response) => {
     res.render('auth/signin')
 })
 
-router.post('/signin', auth.isNotLoggedIn, (req: Request, res: Response, next) => {
+router.post('/signin', (req: Request, res: Response, next) => {
     passport.authenticate('local.signin', {
         successRedirect: '/profile',
         failureRedirect: '/signin',
@@ -35,8 +35,11 @@ router.post('/signin', auth.isNotLoggedIn, (req: Request, res: Response, next) =
 
 });
 
-router.get("/profile", auth.isLoggedIn, (request, response) => {
-    response.render("../views/profile");
+
+// profile
+
+router.get("/profile", auth.isLoggedIn, (req: Request, res: Response) => {
+    res.render("profile");
   });
 
 router.get('/logout', auth.isLoggedIn, function(req: Request, res:Response, next) {
