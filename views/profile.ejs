@@ -51,7 +51,10 @@
               <div class="card-body">
                 <h5 class="card-title">Editar usuario</h5>
                 <p class="card-text">En esta seccion podrás editar tu usuario</p>
-                <a href="./user-edit" class="btn btn-primary">Ingresar</a>
+                <form action="./user-edit" method="GET">
+                  <input type="hidden" name="id" value="<%= user.id %>">
+                  <button type="submit" class="btn btn-primary">Ingresar</button>
+                </form>
               </div>
             </div>
           </div>
