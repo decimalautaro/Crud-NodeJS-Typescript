@@ -55,6 +55,11 @@ app.use(routerProduct);
 app.use(routerCategory);
 
 
+// larga error cuando accedo a una ruta que no existe
+// app.use((req:Request, res:Response, next)=>{
+//   res.status(404).render('404')
+// })
+
 
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
   if (err instanceof Error) {
