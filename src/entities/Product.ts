@@ -1,7 +1,7 @@
-import { Column, CreateDateColumn, Double, Entity, PrimaryColumn, UpdateDateColumn, ManyToOne, JoinColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn, ManyToOne, JoinColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Category } from "./Category";
-
+import { User } from "./User";
 @Entity("products")
 class Product {
 
@@ -24,6 +24,10 @@ class Product {
   @ManyToOne(() => Category, category => category.products)
   @JoinColumn({ name: "categoryId"})
   category: Category;
+
+  // @ManyToOne(() => User, user => user.products)
+  // @JoinColumn({ name: "userId"})
+  // user: User;
 
   @CreateDateColumn()
   created_at: Date;

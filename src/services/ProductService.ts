@@ -1,7 +1,6 @@
 import {getCustomRepository } from "typeorm";
 import { Product } from "../entities/Product";
 import { Category } from "../entities/Category";
-
 import { ProductsRepository } from "../repositories/ProductsRepository";
 
 interface IProduct {
@@ -15,7 +14,7 @@ interface IProduct {
 
 class ProductServices {
     async create({ nameProduct, price, type, categoryId}: IProduct) {
-        if (!nameProduct || !price || !type || !categoryId) {
+        if (!nameProduct || !price || !type || !categoryId ) {
             throw new Error("Por favor rellena todos los campos");
         }
     
@@ -27,9 +26,8 @@ class ProductServices {
         //     throw new Error("El nombre del producto ya está registrado");
         // }
 
-
+        
         const product = productsRepository.create({ nameProduct, price, type, categoryId});
-    
         await productsRepository.save(product);
     
         return product;
@@ -55,7 +53,7 @@ class ProductServices {
     async edit(id: string) {
         const productsRepository = getCustomRepository(ProductsRepository);
     
-        const product = await productsRepository.findOne(id);
+        const product = await productsRepository.findOne(id, {relations: [ "category"]});
     
         return product;
     }
@@ -65,7 +63,7 @@ class ProductServices {
     async list() {
         const productsRepository = getCustomRepository(ProductsRepository);
     
-        const products = await productsRepository.find({relations:["category"]});
+        const products = await productsRepository.find({ relations:[ "category"] });
         return products;
         
     }
@@ -105,12 +103,6 @@ class ProductServices {
         return product;
     
     }
-
-
-
-
-
-
 
 
 }
