@@ -39,10 +39,10 @@
     <br>
     <br>
     <br>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
     <table class="table table-hover">
       <thead>
         <th scope="col">Usuario</th>
-        <th scope="col">Contraseña</th>
         <th scope="col">Nombre</th>
         <th scope="col">Email</th>
         <th scope="col">Telefono</th>
@@ -57,9 +57,6 @@
           <tr>
             <td>
               <%= user.username %>
-            </td>
-            <td>
-              <%= user.password %>
             </td>
             <td>
               <%= user.name %>
@@ -105,6 +102,7 @@
           <% }) %>
       </tbody>
     </table>
+  </div>
     <br>
     <br>
     <div class="float-start">
