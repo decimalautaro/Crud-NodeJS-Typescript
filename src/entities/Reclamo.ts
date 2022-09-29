@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn, ManyToOne, JoinColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { User } from "./User";
 
 @Entity("reclamos")
 class Reclamo {
@@ -18,6 +19,13 @@ class Reclamo {
 
   @Column()
   estado: string;
+
+  @Column()
+  userId:string;
+
+  @ManyToOne(()=> User, user => user.reclamos)
+  @JoinColumn({name: "userId"})
+  user: User
 
 
   @CreateDateColumn()

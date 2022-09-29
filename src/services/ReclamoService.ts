@@ -9,11 +9,12 @@ interface IReclamo {
     numeroReclamo: number;
     fecha: Date;
     estado: string;
+    userId: string
 }
 
 class ReclamosServices {
-    async create({ tipoReclamo, fecha, estado,numeroReclamo}: IReclamo) {
-        if ( !tipoReclamo|| !fecha || !estado || !numeroReclamo ) {
+    async create({ tipoReclamo, fecha, estado,numeroReclamo, userId}: IReclamo) {
+        if ( !tipoReclamo|| !fecha || !estado || !numeroReclamo || !userId ) {
             throw new Error("Por favor rellena todos los campos");
         }
     
@@ -62,7 +63,7 @@ class ReclamosServices {
     async edit(id: string) {
         const reclamosRepository = getCustomRepository(ReclamosRepository);
     
-        const reclamo = await reclamosRepository.findOne(id);
+        const reclamo = await reclamosRepository.findOne(id, {relations: ["user"]});
     
         return reclamo;
     }
@@ -70,7 +71,7 @@ class ReclamosServices {
     async list() {
         const reclamosRepository = getCustomRepository(ReclamosRepository);
     
-        const reclamos = await reclamosRepository.find();
+        const reclamos = await reclamosRepository.find({relations:["user"]});
         
         return reclamos;
     }
@@ -89,6 +90,7 @@ class ReclamosServices {
             .orWhere("numeroReclamo like :search", { search: `%${search}%` })
             .orWhere("fecha like :search", { search: `%${search}%` })
             .orWhere("estado like :search", { search: `%${search}%` })
+            .orWhere("userId like :search", { search: `%${search}%` })
             .getMany();
     
         return reclamo;
@@ -96,16 +98,13 @@ class ReclamosServices {
     }
 
 
-    async update({ id, tipoReclamo, numeroReclamo, fecha, estado }: IReclamo) {
+    async update({ id, tipoReclamo, numeroReclamo, fecha, estado, userId }: IReclamo) {
         const reclamosRepository = getCustomRepository(ReclamosRepository);
     
         const reclamo = await reclamosRepository
             .createQueryBuilder()
             .update(Reclamo)
-            .set({ tipoReclamo,
-                fecha,
-                estado,
-            numeroReclamo})
+            .set({ tipoReclamo,fecha,estado,numeroReclamo, userId})
             .where("id = :id", { id })
             .execute();
     

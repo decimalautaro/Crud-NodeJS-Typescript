@@ -5,7 +5,7 @@ import ReclamosServices from "../services/ReclamoService";
 class ReclamosController {
 
     async create(request: Request, response: Response) {
-        const { tipoReclamo, fecha, estado, numeroReclamo } = request.body;
+        const { tipoReclamo, fecha, estado, numeroReclamo,userId } = request.body;
     
         const createReclamoService = new ReclamosServices();
     
@@ -14,7 +14,8 @@ class ReclamosController {
                 tipoReclamo,
                 fecha,
                 estado,
-                numeroReclamo
+                numeroReclamo,
+                userId
             }).then(() => {
                 request.flash("success","Reclamo creado exitosamente");
           response.redirect("./reclamos");
@@ -91,12 +92,12 @@ class ReclamosController {
 
 
     async update(request: Request, response: Response) {
-        const { id, tipoReclamo, numeroReclamo, fecha, estado } = request.body;
+        const { id, tipoReclamo, numeroReclamo, fecha, estado, userId } = request.body;
     
         const updateReclamoService = new ReclamosServices();
     
         try {
-            await updateReclamoService.update({ id, tipoReclamo, numeroReclamo, fecha, estado }).then(() => {
+            await updateReclamoService.update({ id, tipoReclamo, numeroReclamo, fecha, estado, userId }).then(() => {
                 request.flash("success","Reclamo actualizado exitosamente");
                 response.redirect("./users");
         });
