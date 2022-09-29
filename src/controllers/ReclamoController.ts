@@ -54,7 +54,7 @@ class ReclamosController {
     
         const reclamo = await getReclamoDataService.edit(id);
     
-        return response.render("./reclamos/reclamos-edit", {
+        return response.render("./reclamos/reclamo-edit", {
         reclamo: reclamo
         });
     }
@@ -65,7 +65,7 @@ class ReclamosController {
     
         const reclamos = await listReclamosService.list();
     
-            return response.render("./reclamos/reclamos", {
+            return response.render("./reclamos/reclamo", {
             reclamos: reclamos
         });
     }

@@ -12,6 +12,7 @@ import session from "express-session"
 import { router } from "./routes/autenticacion-route";
 import passport from 'passport';
 import { routerIndex } from "./routes";
+import { routerReclamo } from "./routes/reclamo-route";
 
 //inicializacion
 const app = express();
@@ -53,6 +54,7 @@ app.use(router);
 app.use(routerUser);
 app.use(routerProduct);
 app.use(routerCategory);
+app.use(routerReclamo);
 
 
 // larga error cuando accedo a una ruta que no existe

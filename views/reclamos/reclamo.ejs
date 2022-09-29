@@ -16,7 +16,6 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="./profile">Inicio</a>
           </li>
-
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="./add-reclamo">Agregar reclamo</a>
           </li>
@@ -33,8 +32,9 @@
     <div class="position-absolute">
       <%- include ('../message/message') %>
     </div>
+
     <div class="text-center">
-      <h2>Busca por "<%= search %>"</h2>
+      <h2>Lista de reclamos</h2>
     </div>
     <br>
     <br>
@@ -45,7 +45,9 @@
         <th scope="col">N° de reclamo</th>
         <th scope="col">Fecha</th>
         <th scope="col">Estado</th>
-
+        <th scope="col">Creación</th>
+        <th scope="col">Actualización</th>
+        <th scope="col">Comportamiento</th>
       </thead>
       <tbody>
         <% reclamos.forEach(function(reclamo) { %>
@@ -62,7 +64,6 @@
             <td>
               <%= reclamo.estado %>
             </td>
-            
             <td>
               <%= reclamo.created_at.toLocaleDateString() %>
                 <%= reclamo.created_at.toLocaleTimeString() %>
@@ -74,15 +75,15 @@
             <td>
               <div class="row">
                 <div class="row">
-                  <form action="./edit-reclamo" method="GET">
+                  <form action="./reclamo-edit" method="GET">
                     <input type="hidden" name="id" value="<%= reclamo.id %>">
                     <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
                   </form>
                 </div>
                 <div class="row"></div>
                 <div class="row">
-                  <form action="./delete-reclamo" method="POST">
-                    <input type="hidden" name="id" value="<%= reclamo.id %>">
+                  <form action="./reclamo-delete"  method="POST">
+                    <input type="hidden" name="id" value="<%= reclamo.id %>" >
                     <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
                   </form>
                 </div>
@@ -92,12 +93,16 @@
           <% }) %>
       </tbody>
     </table>
+    <br>
+    <br>
+    <div class="float-start">
+      <a href="./add-reclamo" class="btn primary-btn">Agregar reclamo</a>
+    </div>
   </div>
   <%- include('../template/footer') %>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
     crossorigin="anonymous"></script>
-  <script src="js/product-script.js"></script>
 </body>
 
 </html>
