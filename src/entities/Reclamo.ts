@@ -2,7 +2,7 @@ import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn, Many
 import { v4 as uuid } from "uuid";
 
 @Entity("reclamos")
-class Reclamos {
+class Reclamo {
 
   @PrimaryColumn()
   id: string;
@@ -34,4 +34,4 @@ class Reclamos {
 
 }
 
-export { Reclamos };
+export { Reclamo };

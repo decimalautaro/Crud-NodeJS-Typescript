@@ -1,9 +1,9 @@
 import { getCustomRepository } from "typeorm";
-import { Reclamos } from "../entities/Reclamos";
+import { Reclamo } from "../entities/Reclamo";
 import { helpers } from "../lib/helpers";
 import { ReclamosRepository } from "../repositories/ReclamosRepository";
 
-interface IReclamos {
+interface IReclamo {
     id?: string
     tipoReclamo: string;
     numeroReclamo: number;
@@ -12,7 +12,7 @@ interface IReclamos {
 }
 
 class ReclamosServices {
-    async create({ tipoReclamo, fecha, estado,numeroReclamo}: IReclamos) {
+    async create({ tipoReclamo, fecha, estado,numeroReclamo}: IReclamo) {
         if ( !tipoReclamo|| !fecha || !estado || !numeroReclamo ) {
             throw new Error("Por favor rellena todos los campos");
         }
@@ -50,7 +50,7 @@ class ReclamosServices {
         const user = await reclamosRepository
             .createQueryBuilder()
             .delete()
-            .from(Reclamos)
+            .from(Reclamo)
             .where("id = :id", { id })
             .execute();
     
@@ -96,12 +96,12 @@ class ReclamosServices {
     }
 
 
-    async update({ id, tipoReclamo, numeroReclamo, fecha, estado }: IReclamos) {
+    async update({ id, tipoReclamo, numeroReclamo, fecha, estado }: IReclamo) {
         const reclamosRepository = getCustomRepository(ReclamosRepository);
     
         const reclamo = await reclamosRepository
             .createQueryBuilder()
-            .update(Reclamos)
+            .update(Reclamo)
             .set({ tipoReclamo,
                 fecha,
                 estado,
