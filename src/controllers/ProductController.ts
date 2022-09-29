@@ -108,7 +108,7 @@ class ProductController {
     
         try {
             await updateProductService.update({ id, nameProduct, price, type, categoryId }).then(() => {
-                request.flash("success","Producto actualizado exitosamente");
+            request.flash("success","Producto actualizado exitosamente");
             response.redirect("./products");
         });
         } catch (err) {

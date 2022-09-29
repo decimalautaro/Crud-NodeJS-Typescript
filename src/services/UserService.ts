@@ -14,7 +14,7 @@ interface IUser {
     state: string;
 }
 
-class UserServices {
+ class UserServices {
     async create({ name, username, password, email, phone, city, state }: IUser) {
         if ( !name || !username || !password || !email || !phone || !city || !state) {
             throw new Error("Por favor rellena todos los campos");
@@ -131,4 +131,5 @@ class UserServices {
 
 
 }
-export default UserServices;
+export const userService = new UserServices()
+export {UserServices};

@@ -69,7 +69,20 @@
 
           </select>
         </div>
+        <div class="col-6">
+          <label for="userId" class="form-label">Usuario</label>
+          <select name="userId" id="userId" class="form-select">
+            <option value="" selected disabled>Selecione Usuario</option>
+            <%  user.forEach(function(user{ %>
+              <option value="<%= user.id %>">
+                <%= user.name %>
+              </option>
+              <%})%>
+
+          </select>
+        </div>
         
+      </div>
       <br>
       <div class="row mt-5">
         <div class="col-6">

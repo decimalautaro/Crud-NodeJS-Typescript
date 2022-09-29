@@ -62,6 +62,18 @@
         <input type="bolean" name="estado" id="estado" class="form-control" value="<%= reclamo.estado %>">
       </div> 
 
+      <div class="col-6">
+        <label for="userId" class="form-label">Usuario</label>
+        <select name="userId" id="userId" class="form-select">
+          <option value="" selected disabled>Seleccione el usuario</option>
+          <%  user.forEach(function(user){ %>
+            <option value="<%= user.id %>">
+              <%= user.name %>
+            </option>
+            <%})%>
+        </select>
+    </div>
+
 
       <br>
       <div class="row d-flex justify-content-center">

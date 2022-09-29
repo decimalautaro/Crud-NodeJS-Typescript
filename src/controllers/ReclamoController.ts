@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import ReclamosServices from "../services/ReclamoService";
+import {userService, UserServices} from "../services/UserService";
 
 
 class ReclamosController {
@@ -25,7 +26,11 @@ class ReclamosController {
         response.redirect("./reclamos");
             }
         }
-    
+
+    async add(request:Request, response: Response) {
+        const reclamo = await userService.list();
+        return response.render("./reclamos/reclamo-add",{reclamo})
+    }
     
 
 
@@ -52,11 +57,14 @@ class ReclamosController {
         id = id.toString();
     
         const getReclamoDataService = new ReclamosServices();
-    
         const reclamo = await getReclamoDataService.edit(id);
-    
+        
+        const listUser = new UserServices()
+        const user = await listUser.list()
+
         return response.render("./reclamos/reclamo-edit", {
-        reclamo: reclamo
+            reclamo: reclamo,
+            user: user
         });
     }
 

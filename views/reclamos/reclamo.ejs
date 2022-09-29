@@ -46,6 +46,7 @@
         <th scope="col">N° de reclamo</th>
         <th scope="col">Fecha</th>
         <th scope="col">Estado</th>
+        <th scope="col">Usuario</th>
         <th scope="col">Creación</th>
         <th scope="col">Actualización</th>
         <th scope="col">Comportamiento</th>
@@ -64,6 +65,9 @@
             </td>
             <td>
               <%= reclamo.estado %>
+            </td>
+            <td>
+              <%= reclamo.user.username %>
             </td>
             <td>
               <%= reclamo.created_at.toLocaleDateString() %>

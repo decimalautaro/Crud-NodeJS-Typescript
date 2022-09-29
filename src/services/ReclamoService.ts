@@ -36,7 +36,7 @@ class ReclamosServices {
 
     
     
-        const reclamo = reclamosRepository.create({ tipoReclamo, fecha, estado, numeroReclamo });
+        const reclamo = reclamosRepository.create({ tipoReclamo, fecha, estado, numeroReclamo, userId });
     
         await reclamosRepository.save(reclamo);
     
