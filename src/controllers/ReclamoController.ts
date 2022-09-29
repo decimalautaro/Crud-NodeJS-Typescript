@@ -5,16 +5,16 @@ import ReclamosServices from "../services/ReclamoService";
 class ReclamosController {
 
     async create(request: Request, response: Response) {
-        const { tipoReclamo, numeroReclamo, fecha, estado } = request.body;
+        const { tipoReclamo, fecha, estado, numeroReclamo } = request.body;
     
         const createReclamoService = new ReclamosServices();
     
         try {
             await createReclamoService.create({
                 tipoReclamo,
-                numeroReclamo,
                 fecha,
-                estado
+                estado,
+                numeroReclamo
             }).then(() => {
                 request.flash("success","Reclamo creado exitosamente");
           response.redirect("./reclamos");

@@ -8,12 +8,12 @@ interface IReclamos {
     tipoReclamo: string;
     numeroReclamo: number;
     fecha: Date;
-    estado: boolean;
+    estado: string;
 }
 
 class ReclamosServices {
-    async create({ tipoReclamo, numeroReclamo, fecha, estado}: IReclamos) {
-        if ( !tipoReclamo || !numeroReclamo || !fecha || !estado ) {
+    async create({ tipoReclamo, fecha, estado,numeroReclamo}: IReclamos) {
+        if ( !tipoReclamo|| !fecha || !estado || !numeroReclamo ) {
             throw new Error("Por favor rellena todos los campos");
         }
     
@@ -24,14 +24,18 @@ class ReclamosServices {
         if (reclamoAlreadyExists) {
             throw new Error("El tipo de reclamo ya está registrado");
         }
+
+        const nroReclamoAlreadyExists = await reclamosRepository.findOne({ numeroReclamo });
     
-        const numeroReclamoAlreadyExists = await reclamosRepository.findOne({ numeroReclamo });
-    
-        if (numeroReclamoAlreadyExists) {
-            throw new Error("El numero de reclamo ya está registrado");
+        if (nroReclamoAlreadyExists) {
+            throw new Error("El n| de reclamo ya está registrado");
         }
+
+
+
     
-        const reclamo = reclamosRepository.create({ tipoReclamo, numeroReclamo, fecha, estado });
+    
+        const reclamo = reclamosRepository.create({ tipoReclamo, fecha, estado, numeroReclamo });
     
         await reclamosRepository.save(reclamo);
     
@@ -99,9 +103,9 @@ class ReclamosServices {
             .createQueryBuilder()
             .update(Reclamos)
             .set({ tipoReclamo,
-                numeroReclamo,
                 fecha,
-                estado,})
+                estado,
+            numeroReclamo})
             .where("id = :id", { id })
             .execute();
     

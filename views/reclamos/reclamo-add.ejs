@@ -47,24 +47,31 @@
       <br>
 
       <div class="row">
-        <div class="col-6">
-          <label for="numeroReclamo" class="form-label">N° de Reclamo</label>
-          <input type="number" name="numeroReclamo" id="numeroReclamo" class="form-control">
-        </div>
+        
         <div class="col-6">
           <label for="fecha" class="form-label">Fecha</label>
           <input type="date" name="fecha" id="fecha" class="form-control">
         </div>
+        <div class="col-6">
+          <label for="numeroReclamo" class="form-label">N° de reclamo</label>
+          <input type="number" name="numeroReclamo" id="numeroReclamo" class="form-control">
+        </div>
       </div>
-      <br>
+
       <div class="row">
         <div class="col-6">
           <label for="estado" class="form-label">Estado</label>
-          <input type="text" name="estado" id="estado" class="form-control">
+          <select name="estado" id="estado" class="form-select">
+            <option value="" selected disabled>Selecione el estado</option>
+            <option value="Pendiente">Pendiente</option>
+            <option value="En progreso">En progreso</option>
+            <option value="Finalizado">Finalizado</option>
+
+          </select>
         </div>
         
       <br>
-      <div class="row">
+      <div class="row mt-5">
         <div class="col-6">
           <div class="float-start">
             <button type="submit" class="btn primary-btn">Agregar reclamo</button>

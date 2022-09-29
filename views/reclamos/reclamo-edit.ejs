@@ -49,7 +49,7 @@
       <div class="row">
         <div class="col-6">
           <label for="numeroReclamo" class="form-label">N° de reclamo</label>
-          <input type="number" name="numeroReclamo" id="numeroReclamo" class="form-control" value="<%= reclamo.numeroReclamo %>" required>
+          <input type="number" name="numeroReclamo" id="numeroReclamo" class="form-control" value="<%= reclamo.numeroReclamo %>" >
         </div>
         
         <div class="col-6">
@@ -61,11 +61,10 @@
         <label for="estado" class="form-label">Estado</label>
         <input type="bolean" name="estado" id="estado" class="form-control" value="<%= reclamo.estado %>">
       </div> 
-    </div>
 
 
       <br>
-      <div class="row">
+      <div class="row d-flex justify-content-center">
         <div class="col-6">
           <div class="float-start">
             <button type="submit" class="btn primary-btn">Actualizar reclamo</button>

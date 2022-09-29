@@ -17,7 +17,7 @@ class Reclamos {
   fecha: Date;
 
   @Column()
-  estado: boolean;
+  estado: string;
 
 
   @CreateDateColumn()
