@@ -28,12 +28,12 @@ passport.use('local.signin', new LocalStrategy({
         done(null, user);
         } else {
 
-            req.flash("error", "Contraseña incorrecta")
+            req.flash("error", "Error 404")
             done(null, false);
         }
     } else {
 
-        req.flash("error", "El usuario no existe.")
+        req.flash("error", "Error 404")
         return done(null, false);
     }
 }));

@@ -40,8 +40,11 @@ class ProductController {
         const deleteProductService = new ProductService();
     
         try {
-            request.flash("success","Producto eliminado exitosamente");
-            response.redirect("./products");
+            await deleteProductService.delete(id).then(() => {
+                request.flash("success","Producto eliminado exitosamente");
+                  response.redirect("./products");
+              });
+            
         } catch (err) {
             request.flash("error","Error al eliminar el producto"), err;
         response.redirect("./products");
@@ -99,7 +102,7 @@ class ProductController {
 
 
     async update(request: Request, response: Response) {
-        const { id, nameProduct, price, type, categoryId} = request.body;
+        const { id, nameProduct, price, type, categoryId, } = request.body;
     
         const updateProductService = new ProductService();
     

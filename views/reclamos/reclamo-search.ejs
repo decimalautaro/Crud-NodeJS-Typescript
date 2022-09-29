@@ -18,10 +18,10 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="./add-product">Agregar producto</a>
+            <a class="nav-link active" aria-current="page" href="./add-reclamo">Agregar reclamo</a>
           </li>
         </ul>
-        <form class="d-flex" action="./search-product" method="GET">
+        <form class="d-flex" action="./search-reclamo" method="GET">
           <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
           <button class="btn secondary-btn" type="submit">Buscar</button>
         </form>
@@ -41,47 +41,48 @@
     <br>
     <table class="table table-hover">
       <thead>
-        <th scope="col">Nombre</th>
-        <th scope="col">Precio</th>
-        <th scope="col">Categoria</th>
-        
+        <th scope="col">Tipo de reclamo</th>
+        <th scope="col">N° de reclamo</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Estado</th>
+
       </thead>
       <tbody>
-        <% products.forEach(function(product) { %>
+        <% reclamos.forEach(function(reclamo) { %>
           <tr>
             <td>
-              <%= product.nameProduct %>
+              <%= reclamo.tipoReclamo %>
             </td>
             <td>
-              <%= product.price %>
+              <%= reclamo.numeroReclamo %>
             </td>
             <td>
-              <%= product.type %>
+              <%= reclamo.fecha %>
             </td>
             <td>
-              <%= product.categoryId %>
+              <%= reclamo.estado %>
             </td>
             
             <td>
-              <%= product.created_at.toLocaleDateString() %>
-                <%= product.created_at.toLocaleTimeString() %>
+              <%= reclamo.created_at.toLocaleDateString() %>
+                <%= reclamo.created_at.toLocaleTimeString() %>
             </td>
             <td>
-              <%= product.updated_at.toLocaleDateString() %>
-                <%= product.updated_at.toLocaleTimeString() %>
+              <%= reclamo.updated_at.toLocaleDateString() %>
+                <%= reclamo.updated_at.toLocaleTimeString() %>
             </td>
             <td>
               <div class="row">
                 <div class="row">
-                  <form action="./edit" method="GET">
-                    <input type="hidden" name="id" value="<%= product.id %>">
+                  <form action="./edit-reclamo" method="GET">
+                    <input type="hidden" name="id" value="<%= reclamo.id %>">
                     <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
                   </form>
                 </div>
                 <div class="row"></div>
                 <div class="row">
-                  <form action="./delete-product" method="POST">
-                    <input type="hidden" name="id" value="<%= product.id %>">
+                  <form action="./delete-reclamo" method="POST">
+                    <input type="hidden" name="id" value="<%= reclamo.id %>">
                     <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
                   </form>
                 </div>

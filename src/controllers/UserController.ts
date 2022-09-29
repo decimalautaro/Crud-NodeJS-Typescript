@@ -17,7 +17,7 @@ class UserController {
                 email,
                 phone,
                 city,
-                state
+                state,
             }).then(() => {
                 request.flash("success","Usuario creado exitosamente");
           response.redirect("./users");
