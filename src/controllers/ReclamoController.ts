@@ -19,7 +19,7 @@ class ReclamosController {
                 userId
             }).then(() => {
                 request.flash("success","Reclamo creado exitosamente");
-          response.redirect("./reclamos");
+                response.redirect("./reclamos");
             });
         } catch (err) {
             request.flash("error","ERROR, faltan llenar datos"), err;
@@ -28,8 +28,8 @@ class ReclamosController {
         }
 
     async add(request:Request, response: Response) {
-        const reclamo = await userService.list();
-        return response.render("./reclamos/reclamo-add",{reclamo})
+        const user = await userService.list();
+        return response.render("./reclamos/reclamo-add",{user})
     }
     
 
@@ -73,9 +73,13 @@ class ReclamosController {
         const listReclamosService = new ReclamosServices();
     
         const reclamos = await listReclamosService.list();
-    
+        
+        const listUser = new UserServices()
+        const user = await listUser.list()
+
             return response.render("./reclamos/reclamo", {
-            reclamos: reclamos
+            reclamos: reclamos,
+            user: user
         });
     }
 

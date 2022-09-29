@@ -29,7 +29,7 @@ class ReclamosServices {
         const nroReclamoAlreadyExists = await reclamosRepository.findOne({ numeroReclamo });
     
         if (nroReclamoAlreadyExists) {
-            throw new Error("El n| de reclamo ya está registrado");
+            throw new Error("El n° de reclamo ya está registrado");
         }
 
 
