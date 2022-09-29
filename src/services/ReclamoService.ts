@@ -1,19 +1,20 @@
 import { getCustomRepository } from "typeorm";
-import { Reclamos } from "../entities/Reclamos";
+import { Reclamo } from "../entities/Reclamo";
 import { helpers } from "../lib/helpers";
 import { ReclamosRepository } from "../repositories/ReclamosRepository";
 
-interface IReclamos {
+interface IReclamo {
     id?: string
     tipoReclamo: string;
     numeroReclamo: number;
     fecha: Date;
     estado: string;
+    userId: string
 }
 
 class ReclamosServices {
-    async create({ tipoReclamo, fecha, estado,numeroReclamo}: IReclamos) {
-        if ( !tipoReclamo|| !fecha || !estado || !numeroReclamo ) {
+    async create({ tipoReclamo, fecha, estado,numeroReclamo, userId}: IReclamo) {
+        if ( !tipoReclamo|| !fecha || !estado || !numeroReclamo || !userId ) {
             throw new Error("Por favor rellena todos los campos");
         }
     
@@ -28,14 +29,14 @@ class ReclamosServices {
         const nroReclamoAlreadyExists = await reclamosRepository.findOne({ numeroReclamo });
     
         if (nroReclamoAlreadyExists) {
-            throw new Error("El n| de reclamo ya está registrado");
+            throw new Error("El n° de reclamo ya está registrado");
         }
 
 
 
     
     
-        const reclamo = reclamosRepository.create({ tipoReclamo, fecha, estado, numeroReclamo });
+        const reclamo = reclamosRepository.create({ tipoReclamo, fecha, estado, numeroReclamo, userId });
     
         await reclamosRepository.save(reclamo);
     
@@ -50,7 +51,7 @@ class ReclamosServices {
         const user = await reclamosRepository
             .createQueryBuilder()
             .delete()
-            .from(Reclamos)
+            .from(Reclamo)
             .where("id = :id", { id })
             .execute();
     
@@ -62,7 +63,7 @@ class ReclamosServices {
     async edit(id: string) {
         const reclamosRepository = getCustomRepository(ReclamosRepository);
     
-        const reclamo = await reclamosRepository.findOne(id);
+        const reclamo = await reclamosRepository.findOne(id, {relations: ["user"]});
     
         return reclamo;
     }
@@ -70,7 +71,7 @@ class ReclamosServices {
     async list() {
         const reclamosRepository = getCustomRepository(ReclamosRepository);
     
-        const reclamos = await reclamosRepository.find();
+        const reclamos = await reclamosRepository.find({relations:["user"]});
         
         return reclamos;
     }
@@ -89,6 +90,7 @@ class ReclamosServices {
             .orWhere("numeroReclamo like :search", { search: `%${search}%` })
             .orWhere("fecha like :search", { search: `%${search}%` })
             .orWhere("estado like :search", { search: `%${search}%` })
+            .orWhere("userId like :search", { search: `%${search}%` })
             .getMany();
     
         return reclamo;
@@ -96,16 +98,13 @@ class ReclamosServices {
     }
 
 
-    async update({ id, tipoReclamo, numeroReclamo, fecha, estado }: IReclamos) {
+    async update({ id, tipoReclamo, numeroReclamo, fecha, estado, userId }: IReclamo) {
         const reclamosRepository = getCustomRepository(ReclamosRepository);
     
         const reclamo = await reclamosRepository
             .createQueryBuilder()
-            .update(Reclamos)
-            .set({ tipoReclamo,
-                fecha,
-                estado,
-            numeroReclamo})
+            .update(Reclamo)
+            .set({ tipoReclamo,fecha,estado,numeroReclamo, userId})
             .where("id = :id", { id })
             .execute();
     

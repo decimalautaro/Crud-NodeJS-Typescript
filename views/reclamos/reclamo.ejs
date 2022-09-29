@@ -12,14 +12,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="./profile">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="./add-reclamo">Agregar reclamo</a>
-          </li>
-        </ul>
+        <%- include ('../template/ul') %>
         <form class="d-flex" action="./search-reclamo" method="GET">
           <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
           <button class="btn secondary-btn" type="submit">Buscar</button>
@@ -46,6 +39,7 @@
         <th scope="col">N° de reclamo</th>
         <th scope="col">Fecha</th>
         <th scope="col">Estado</th>
+        <th scope="col">Usuario</th>
         <th scope="col">Creación</th>
         <th scope="col">Actualización</th>
         <th scope="col">Comportamiento</th>
@@ -64,6 +58,9 @@
             </td>
             <td>
               <%= reclamo.estado %>
+            </td>
+            <td>
+              <%= reclamo.user.username %>
             </td>
             <td>
               <%= reclamo.created_at.toLocaleDateString() %>

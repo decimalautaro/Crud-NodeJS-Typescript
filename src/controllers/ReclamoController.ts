@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
 import ReclamosServices from "../services/ReclamoService";
+import {userService, UserServices} from "../services/UserService";
 
 
 class ReclamosController {
 
     async create(request: Request, response: Response) {
-        const { tipoReclamo, fecha, estado, numeroReclamo } = request.body;
+        const { tipoReclamo, fecha, estado, numeroReclamo,userId } = request.body;
     
         const createReclamoService = new ReclamosServices();
     
@@ -14,17 +15,22 @@ class ReclamosController {
                 tipoReclamo,
                 fecha,
                 estado,
-                numeroReclamo
+                numeroReclamo,
+                userId
             }).then(() => {
                 request.flash("success","Reclamo creado exitosamente");
-          response.redirect("./reclamos");
+                response.redirect("./reclamos");
             });
         } catch (err) {
             request.flash("error","ERROR, faltan llenar datos"), err;
         response.redirect("./reclamos");
             }
         }
-    
+
+    async add(request:Request, response: Response) {
+        const user = await userService.list();
+        return response.render("./reclamos/reclamo-add",{user})
+    }
     
 
 
@@ -51,11 +57,14 @@ class ReclamosController {
         id = id.toString();
     
         const getReclamoDataService = new ReclamosServices();
-    
         const reclamo = await getReclamoDataService.edit(id);
-    
+        
+        const listUser = new UserServices()
+        const user = await listUser.list()
+
         return response.render("./reclamos/reclamo-edit", {
-        reclamo: reclamo
+            reclamo: reclamo,
+            user: user
         });
     }
 
@@ -64,9 +73,13 @@ class ReclamosController {
         const listReclamosService = new ReclamosServices();
     
         const reclamos = await listReclamosService.list();
-    
+        
+        const listUser = new UserServices()
+        const user = await listUser.list()
+
             return response.render("./reclamos/reclamo", {
-            reclamos: reclamos
+            reclamos: reclamos,
+            user: user
         });
     }
 
@@ -91,12 +104,12 @@ class ReclamosController {
 
 
     async update(request: Request, response: Response) {
-        const { id, tipoReclamo, numeroReclamo, fecha, estado } = request.body;
+        const { id, tipoReclamo, numeroReclamo, fecha, estado, userId } = request.body;
     
         const updateReclamoService = new ReclamosServices();
     
         try {
-            await updateReclamoService.update({ id, tipoReclamo, numeroReclamo, fecha, estado }).then(() => {
+            await updateReclamoService.update({ id, tipoReclamo, numeroReclamo, fecha, estado, userId }).then(() => {
                 request.flash("success","Reclamo actualizado exitosamente");
                 response.redirect("./users");
         });

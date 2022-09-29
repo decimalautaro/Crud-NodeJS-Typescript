@@ -1,8 +1,9 @@
 import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn, ManyToOne, JoinColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { User } from "./User";
 
 @Entity("reclamos")
-class Reclamos {
+class Reclamo {
 
   @PrimaryColumn()
   id: string;
@@ -19,6 +20,13 @@ class Reclamos {
   @Column()
   estado: string;
 
+  @Column()
+  userId:string;
+
+  @ManyToOne(()=> User, user => user.reclamos)
+  @JoinColumn({name: "userId"})
+  user: User
+
 
   @CreateDateColumn()
   created_at: Date;
@@ -34,4 +42,4 @@ class Reclamos {
 
 }
 
-export { Reclamos };
+export { Reclamo };

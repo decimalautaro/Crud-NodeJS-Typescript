@@ -8,9 +8,7 @@ const reclamoController = new ReclamoController();
 
 routerReclamo.get("/reclamos",auth.isLoggedIn, reclamoController.list);
 
-routerReclamo.get("/add-reclamo", (request, response) => {
-  response.render("../views/reclamos/reclamo-add");
-});
+routerReclamo.get("/add-reclamo", auth.isLoggedIn, reclamoController.add);
 
 routerReclamo.post("/reclamo-add",auth.isLoggedIn, reclamoController.create);
 

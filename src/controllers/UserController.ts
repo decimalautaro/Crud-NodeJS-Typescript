@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import UserService from "../services/UserService";
+import {UserServices} from "../services/UserService";
 
 
 class UserController {
@@ -7,7 +7,7 @@ class UserController {
     async create(request: Request, response: Response) {
         const { name, username, password, email, phone, city, state } = request.body;
     
-        const createUserService = new UserService();
+        const createUserService = new UserServices();
     
         try {
             await createUserService.create({
@@ -34,7 +34,7 @@ class UserController {
     async delete(request: Request, response: Response) {
         const { id } = request.body;
     
-        const deleteUserService = new UserService();
+        const deleteUserService = new UserServices();
     
         try {
             await deleteUserService.delete(id).then(() => {
@@ -53,7 +53,7 @@ class UserController {
         let { id } = request.query;
         id = id.toString();
     
-        const getUserDataService = new UserService();
+        const getUserDataService = new UserServices();
     
         const user = await getUserDataService.edit(id);
     
@@ -64,7 +64,7 @@ class UserController {
 
 
     async list(request: Request, response: Response) {
-        const listUsersService = new UserService();
+        const listUsersService = new UserServices();
     
         const users = await listUsersService.list();
     
@@ -78,7 +78,7 @@ class UserController {
         let { search } = request.query;
         search = search.toString();
     
-        const searchUserService = new UserService();
+        const searchUserService = new UserServices();
     
         try {
             const users = await searchUserService.search(search);
@@ -96,7 +96,7 @@ class UserController {
     async update(request: Request, response: Response) {
         const { id, name, username, password, email, phone, city, state } = request.body;
     
-        const updateUserService = new UserService();
+        const updateUserService = new UserServices();
     
         try {
             await updateUserService.update({ id, name, username, password, email, phone, city, state }).then(() => {

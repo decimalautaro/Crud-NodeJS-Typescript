@@ -1,6 +1,6 @@
 import { Column,OneToMany, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
-import { Product } from "./Product";
+import { Reclamo } from "./Reclamo";
 
 @Entity("users")
 class User {
@@ -29,8 +29,8 @@ class User {
   @Column()
   state: string;
 
-  // @OneToMany(()=> Product, product => product.user,  {eager:true})
-  // products: Product[];
+  @OneToMany(()=> Reclamo, reclamo => reclamo.user)
+  reclamos: Reclamo[];
 
 
   @CreateDateColumn()
