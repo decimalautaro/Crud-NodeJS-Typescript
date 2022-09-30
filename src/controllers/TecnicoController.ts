@@ -1,12 +1,11 @@
 import { Request, Response } from "express";
-import TecnicoServices from "../services/TecnicoService";
 import TecnicoService from "../services/TecnicoService";
 
 
 class TecnicoController {
 
     async create(request: Request, response: Response) {
-        const { nombre, puesto, telefono, email } = request.body;
+        const { nombre, puesto, telefono, email, disponibilidad } = request.body;
     
         const createTecnicoService = new TecnicoService();
     
@@ -15,7 +14,8 @@ class TecnicoController {
                 nombre,
                 puesto,
                 telefono,
-                email
+                email,
+                disponibilidad
 
             }).then(() => {
                 request.flash("success","Tecnico creado exitosamente");
@@ -93,12 +93,12 @@ class TecnicoController {
 
 
     async update(request: Request, response: Response) {
-        const { id, nombre, puesto, telefono, email} = request.body;
+        const { id, nombre, puesto, telefono, email, disponibilidad} = request.body;
     
         const updateTecnicoService = new TecnicoService();
     
         try {
-            await updateTecnicoService.update({ id, nombre, puesto, telefono, email }).then(() => {
+            await updateTecnicoService.update({ id, nombre, puesto, telefono, email, disponibilidad }).then(() => {
                 request.flash("success","Tecnico actualizado exitosamente");
           response.redirect("./tecnicos");
         });

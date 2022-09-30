@@ -19,6 +19,9 @@ class Tecnico {
 
   @Column()
   email: string;
+
+  @Column()
+  disponibilidad: string;
   
   @OneToMany(()=> Reclamo, reclamo => reclamo.tecnico)
   reclamos: Reclamo[];

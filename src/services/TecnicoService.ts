@@ -8,19 +8,19 @@ interface ITecnico {
     puesto: string;
     telefono: number;
     email: string;
-    
+    disponibilidad: string;
     
 }
 
 class TecnicoServices {
-    async create({ nombre, puesto, telefono, email }: ITecnico) {
-        if (!nombre || !puesto || !telefono || !email ) {
+    async create({ nombre, puesto, telefono, email, disponibilidad }: ITecnico) {
+        if (!nombre || !puesto || !telefono || !email || !disponibilidad ) {
             throw new Error("Por favor rellena todos los campos");
         }
     
         const tecnicoRepository = getCustomRepository(TecnicoRepository);
     
-        const nameAlreadyExists = await tecnicoRepository.findOne({ nombre, puesto, telefono, email });
+        const nameAlreadyExists = await tecnicoRepository.findOne({ nombre, puesto, telefono, email, disponibilidad });
     
         if (nameAlreadyExists) {
             throw new Error("El nombre de la categoria ya está registrado");
@@ -38,7 +38,7 @@ class TecnicoServices {
     
         
     
-        const tecnico = tecnicoRepository.create({ nombre, puesto, telefono, email});
+        const tecnico = tecnicoRepository.create({ nombre, puesto, telefono, email,disponibilidad});
     
         await tecnicoRepository.save(tecnico);
     
@@ -94,6 +94,7 @@ class TecnicoServices {
             .orWhere("puesto like :search", { search: `%${search}%` })
             .orWhere("telefono like :search", { search: `%${search}%` })
             .orWhere("email like :search", { search: `%${search}%` })
+            .orWhere("disponibilidad like :search", { search: `%${search}%` })
 
             .getMany();
     
@@ -102,13 +103,13 @@ class TecnicoServices {
     }
 
 
-    async update({ id, nombre, puesto, telefono, email}: ITecnico) {
+    async update({ id, nombre, puesto, telefono, email, disponibilidad}: ITecnico) {
         const tecnicoRepository = getCustomRepository(TecnicoRepository);
     
         const tecnico = await tecnicoRepository
             .createQueryBuilder()
             .update(Tecnico)
-            .set({ nombre, puesto, telefono, email })
+            .set({ nombre, puesto, telefono, email,disponibilidad })
             .where("id = :id", { id })
             .execute();
     
