@@ -66,9 +66,20 @@
             <%})%>
         </select>
     </div>
-
-
       <br>
+      <div class="col-6">
+        <label for="tecnicoId" class="form-label">Tecnico</label>
+        <select name="tecnicoId" id="userId" class="form-select">
+          <option value="" selected disabled>Seleccione el tecnico</option>
+          <%  tecnico.forEach(function(tecnico){ %>
+            <option value="<%= tecnico.id %>">
+              <%= tecnico.nombre %>
+            </option>
+            <%})%>
+        </select>
+    </div>
+    <br>
+      
       <div class="row d-flex justify-content-center">
         <div class="col-6">
           <div class="float-start">
