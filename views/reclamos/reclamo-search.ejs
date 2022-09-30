@@ -17,6 +17,7 @@
           <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
           <button class="btn secondary-btn" type="submit">Buscar</button>
         </form>
+        <a href="/logout" class="btn btn-secondary ms-4">Cerrar sesion</a>
       </div>
     </div>
   </nav>
@@ -37,6 +38,8 @@
         <th scope="col">N° de reclamo</th>
         <th scope="col">Fecha</th>
         <th scope="col">Estado</th>
+        <th scope="col">Usuario</th>
+        <th scope="col">Tecnico</th>
 
       </thead>
       <tbody>
@@ -53,6 +56,12 @@
             </td>
             <td>
               <%= reclamo.estado %>
+            </td>
+            <td>
+              <%= reclamo.userId %>
+            </td>
+            <td>
+              <%= reclamo.tecnicoId %>
             </td>
             
             <td>

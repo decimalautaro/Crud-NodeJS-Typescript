@@ -17,6 +17,7 @@
           <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
           <button class="btn secondary-btn" type="submit">Buscar</button>
         </form>
+        <a href="/logout" class="btn btn-secondary ms-4">Cerrar sesion</a>
       </div>
     </div>
   </nav>
@@ -35,7 +36,10 @@
       <thead>
         <th scope="col">Nombre</th>
         <th scope="col">Precio</th>
+        <th scope="col">Tipo</th>
         <th scope="col">Categoria</th>
+        <th scope="col">Creacion</th>
+        <th scope="col">Actualizacion</th>
         
       </thead>
       <tbody>
@@ -51,7 +55,7 @@
               <%= product.type %>
             </td>
             <td>
-              <%= product.categoryId %>
+              <%= category.name %>
             </td>
             
             <td>

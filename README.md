@@ -1,10 +1,12 @@
-creacion de migraciones: yarn typeorm migration:generate -n "nombre de la migracion"
-correr migracion: yarn typeorm migration:run 
-revertir migracion: yarn typeorm migration:revert
+creacion de migraciones:
+ yarn typeorm migration:generate -n "nombre de la migracion"
 
-min 2h guardar sesion en mysql
-ver video desde 3h 18 min
-VER 3H 40MIN
+correr migracion:
+ yarn typeorm migration:run 
+
+revertir migracion:
+ yarn typeorm migration:revert
+
 
 # CRUD Node.js
 CRUD made with Node.js, Express, TypeScript, TypeORM, EJS &amp; SQLite.
