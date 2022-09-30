@@ -13,6 +13,7 @@ import { router } from "./routes/autenticacion-route";
 import passport from 'passport';
 import { routerIndex } from "./routes";
 import { routerReclamo } from "./routes/reclamo-route";
+import { routerTecnico } from "./routes/tecnico-route";
 
 //inicializacion
 const app = express();
@@ -55,6 +56,7 @@ app.use(routerUser);
 app.use(routerProduct);
 app.use(routerCategory);
 app.use(routerReclamo);
+app.use(routerTecnico)
 
 
 // larga error cuando accedo a una ruta que no existe
