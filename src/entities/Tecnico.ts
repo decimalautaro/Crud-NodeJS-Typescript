@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Double, Entity, PrimaryColumn, UpdateDateColumn, OneToMany } from "typeorm";
 import { v4 as uuid } from "uuid";
-import { Product } from "./Product";
+import { Reclamo } from "./Reclamo";
 
 @Entity("tecnicos")
 class Tecnico {
@@ -20,9 +20,8 @@ class Tecnico {
   @Column()
   email: string;
   
-
-//   @OneToMany(() => Product, product => product.category, {eager:true})
-//   products: Product[];
+  @OneToMany(()=> Reclamo, reclamo => reclamo.tecnico)
+  reclamos: Reclamo[];
 
   @CreateDateColumn()
   created_at: Date;
