@@ -4,6 +4,8 @@ class auth{
         if (req.isAuthenticated()) {
             return next();
         }
+        req.flash("error", "No autorizado, debe iniciar sesion")
+        
         return res.redirect('/signin');
     };
 
@@ -12,6 +14,7 @@ class auth{
             return next();
         }
         else{
+            req.flash("error", "Sesion iniciada")
             return res.redirect('/profile');
         }
         
