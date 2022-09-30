@@ -9,12 +9,13 @@ interface IReclamo {
     numeroReclamo: number;
     fecha: Date;
     estado: string;
-    userId: string
+    userId: string;
+    tecnicoId: string;
 }
 
 class ReclamosServices {
-    async create({ tipoReclamo, fecha, estado,numeroReclamo, userId}: IReclamo) {
-        if ( !tipoReclamo|| !fecha || !estado || !numeroReclamo || !userId ) {
+    async create({ tipoReclamo, fecha, estado,numeroReclamo, userId, tecnicoId}: IReclamo) {
+        if ( !tipoReclamo|| !fecha || !estado || !numeroReclamo || !userId || !tecnicoId ) {
             throw new Error("Por favor rellena todos los campos");
         }
     
@@ -36,7 +37,7 @@ class ReclamosServices {
 
     
     
-        const reclamo = reclamosRepository.create({ tipoReclamo, fecha, estado, numeroReclamo, userId });
+        const reclamo = reclamosRepository.create({ tipoReclamo, fecha, estado, numeroReclamo, userId, tecnicoId });
     
         await reclamosRepository.save(reclamo);
     
@@ -63,7 +64,7 @@ class ReclamosServices {
     async edit(id: string) {
         const reclamosRepository = getCustomRepository(ReclamosRepository);
     
-        const reclamo = await reclamosRepository.findOne(id, {relations: ["user"]});
+        const reclamo = await reclamosRepository.findOne(id, {relations: ["user", "tecnico"]});
     
         return reclamo;
     }
@@ -71,7 +72,7 @@ class ReclamosServices {
     async list() {
         const reclamosRepository = getCustomRepository(ReclamosRepository);
     
-        const reclamos = await reclamosRepository.find({relations:["user"]});
+        const reclamos = await reclamosRepository.find({relations:["user", "tecnico"]});
         
         return reclamos;
     }
@@ -91,6 +92,7 @@ class ReclamosServices {
             .orWhere("fecha like :search", { search: `%${search}%` })
             .orWhere("estado like :search", { search: `%${search}%` })
             .orWhere("userId like :search", { search: `%${search}%` })
+            .orWhere("tecnicoId like :search", { search: `%${search}%` })
             .getMany();
     
         return reclamo;
@@ -98,13 +100,13 @@ class ReclamosServices {
     }
 
 
-    async update({ id, tipoReclamo, numeroReclamo, fecha, estado, userId }: IReclamo) {
+    async update({ id, tipoReclamo, numeroReclamo, fecha, estado, userId, tecnicoId }: IReclamo) {
         const reclamosRepository = getCustomRepository(ReclamosRepository);
     
         const reclamo = await reclamosRepository
             .createQueryBuilder()
             .update(Reclamo)
-            .set({ tipoReclamo,fecha,estado,numeroReclamo, userId})
+            .set({ tipoReclamo,fecha,estado,numeroReclamo, userId, tecnicoId})
             .where("id = :id", { id })
             .execute();
     
