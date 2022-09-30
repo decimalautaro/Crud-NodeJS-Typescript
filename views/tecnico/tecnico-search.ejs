@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <%- include('../template/cabecera') %>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="./profile"><img src="img/icon.png" alt="Node.js icon" class="nav-icon"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <%- include ('../template/ul') %>
+        <form class="d-flex" action="./search-tecnico" method="GET">
+          <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
+          <button class="btn secondary-btn" type="submit">Buscar</button>
+        </form>
+        <a href="/logout" class="btn btn-secondary ms-4">Cerrar sesion</a>
+      </div>
+    </div>
+  </nav>
+  <br>
+  <div class="row container centered" width="100vw">
+    <div class="position-absolute">
+      <%- include ('../message/message') %>
+    </div>
+    <div class="text-center">
+      <h2>Busca por "<%= search %>"</h2>
+    </div>
+    <br>
+    <br>
+    <br>
+    <table class="table table-hover">
+      <thead>
+        <th scope="col">Nombre</th>
+        <th scope="col">Puesto</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Email</th>
+        
+      </thead>
+      <tbody>
+        <% tecnico.forEach(function(tecnico) { %>
+          <tr>
+            <td>
+              <%= tecnico.nombre %>
+            </td>
+            <td>
+                <%= tecnico.puesto %>
+            </td>
+            <td>
+                <%= tecnico.telefono %>
+            </td>
+            <td>
+                <%= tecnico.email %>
+            </td>
+           
+            
+            <td>
+              <%= tecnico.created_at.toLocaleDateString() %>
+                <%= tecnico.created_at.toLocaleTimeString() %>
+            </td>
+            <td>
+              <%= tecnico.updated_at.toLocaleDateString() %>
+                <%= tecnico.updated_at.toLocaleTimeString() %>
+            </td>
+            <td>
+              <div class="row">
+                <div class="row">
+                  <form action="./edit-tecnico" method="GET">
+                    <input type="hidden" name="id" value="<%= tecnico.id %>">
+                    <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
+                  </form>
+                </div>
+                <div class="row"></div>
+                <div class="row">
+                  <form action="./delete-tecnico" method="POST">
+                    <input type="hidden" name="id" value="<%= tecnico.id %>">
+                    <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
+                  </form>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>
