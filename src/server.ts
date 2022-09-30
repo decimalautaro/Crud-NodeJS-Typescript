@@ -60,7 +60,7 @@ app.use(routerTecnico)
 
 
 // larga error cuando accedo a una ruta que no existe
-// app.use((req:Request, res:Response, next)=>{
+// app.use((req:Request, res:Response)=>{
 //   res.status(404).render('404')
 // })
 
