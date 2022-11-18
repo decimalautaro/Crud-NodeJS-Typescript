@@ -3,62 +3,83 @@
 
 <%- include('./template/cabecera') %>
 
-<body>
-  <div class="conteiner">
+  <body class="body-index">
     <%- include('./template/index-nav') %>
 
-    
-    <%- include('./template/footer') %>
 
-<br>
-<br>
-    <div class="col-md-12 justify-content-around text-center" >
+      <%- include('./template/footer') %>
 
-          <h1><strong>Internet Banda Ancha</strong> </h1>
-          <p>Servicio de internet de alta velocidad, navega manteniendo estabilidad de conexion, brindamos  experiencia fluida en videos online, juegos y musica.</p>
-          <p>Sin ataduras ni tiempo de permanencia. </p>
-    </div>
-    <div class="text-center">
-      <h2><strong>Nuestros planes:</strong> </h2>
-    </div>
-    
-    <div class="row col-12 d-flex justify-content-around text-center">
-      <div class="col-sm-3">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title"><strong>Plan de 15mb Simetricos</strong></h5>
-            <p class="card-text">Podras:Navegar, Redes Sociales, youtube y netflix</p>
-            
+        <div class="container">
+          <br>
+          <br>
+          <div class="d-felx justify-content-center row mb-5">
+            <div class="col-9">
+              <h1 class="title text-center"><strong>Internet Banda Ancha</strong> </h1>
+              <p>Servicio de internet de alta velocidad, navega manteniendo estabilidad de conexion, brindamos experiencia fluida en videos online, juegos y musica.</p>
+              <p>Sin ataduras ni tiempo de permanencia.</p>
+            </div>
+            <div class="text-title col-3">
+              <div class="mt-5">
+                <div class="ms-3">
+                  <p>
+                    <strong>
+                      TE CONECTAMOS CON EL MUNDO
+                    </strong>
+                  </p>
+                  <p class="mb-5">
+                    Navegación fluida
+                  </p>
+                  <p class="mt-3">
+                    <strong>
+                      TE ESTAMOS ESPERANDO
+                    </strong>
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title"><strong>Plan de 50mb Simetricos</strong></h5>
-            <p class="card-text">Podras: Multi-dispositivo, Redes Sociales, youtube HD y netflix HD.</p>
+          <div class="text-center">
+            <h2><strong>Nuestros planes</strong> </h2>
           </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title"><strong>Plan de 100mb Simetricos</strong></h5>
-            <p class="card-text">Podras: Multi-dispositivo, Redes Sociales, youtube FHD y netflix FHD. </p>
 
+          <div class="row col-12 d-flex justify-content-around text-center">
+            <div class="col-sm-3">
+              <div class="card card-index shadow">
+                <img src="../img/conexion.png"class="card-img-top img mx-auto d-block" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title"><strong>Plan de 15mb Simetricos</strong></h5>
+                  <p class="card-text">Podras:Navegar, Redes Sociales, youtube y netflix</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="card card-index shadow">
+                <img src="../img/conexion.png"class="card-img-top img mx-auto d-block" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title"><strong>Plan de 50mb Simetricos</strong></h5>
+                  <p class="card-text">Podras: Multi-dispositivo, Redes Sociales, youtube HD y netflix HD</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="card card-index shadow">
+                <img src="../img/conexion.png"class="card-img-top img mx-auto d-block" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title"><strong>Plan de 100mb Simetricos</strong></h5>
+                  <p class="card-text">Podras: Multi-dispositivo, Redes Sociales, youtube FHD y netflix FHD.</p>
+                </div>
+              </div>
+            </div>
           </div>
+
         </div>
-      </div>
-    </div>
 
-</div>
+        <%- include('./template/footer') %>
 
-<%- include('./template/footer') %>
-  
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-  crossorigin="anonymous"></script>
- 
-</body>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+            crossorigin="anonymous"></script>
+
+  </body>
 
 </html>

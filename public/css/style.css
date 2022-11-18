@@ -1,8 +1,40 @@
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   max-width: 100vw;
   max-height: 100vh;
+  background-color: #F0F0F0;
 
+}
+
+.img {
+  max-width:55%;
+  max-height:55%;
+}
+
+.card-index {
+  margin-top: 25px;
+  height: 20rem;
+  width: 26rem;
+  border-radius: 7px;
+}
+
+.text-title {
+  border-left: 2px solid black;
+}
+
+.title {
+  font-size: 5rem;
+}
+
+.auth-btn {
+  border: 1px solid rgba(219, 219, 219, 0.938);
+  border-radius: 20px;
+  margin-right: 10px;
+}
+
+.auth-btn:hover {
+  background-color: #ff6f80;
+  color: #fff;
 }
 
 .primary-btn {
