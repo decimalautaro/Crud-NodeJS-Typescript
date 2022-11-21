@@ -12,11 +12,12 @@ interface IUser {
     phone: string;
     city: string;
     state: string;
+    
 }
 
  class UserServices {
     async create({ name, username, password, email, phone, city, state }: IUser) {
-        if ( !name || !username || !password || !email || !phone || !city || !state) {
+        if ( !name || !username || !password || !email || !phone || !city || !state ) {
             throw new Error("Por favor rellena todos los campos");
         }
     
@@ -121,7 +122,8 @@ interface IUser {
                 email,
                 phone,
                 city,
-                state })
+                state
+                    })
             .where("id = :id", { id })
             .execute();
     
