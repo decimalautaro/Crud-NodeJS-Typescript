@@ -14,6 +14,8 @@ import passport from 'passport';
 import { routerIndex } from "./routes";
 import { routerReclamo } from "./routes/reclamo-route";
 import { routerTecnico } from "./routes/tecnico-route";
+import { routerServicio } from "./routes/servicio-router";
+import { routerInsumo } from "./routes/insumo-router";
 
 //inicializacion
 const app = express();
@@ -56,7 +58,9 @@ app.use(routerUser);
 app.use(routerProduct);
 app.use(routerCategory);
 app.use(routerReclamo);
-app.use(routerTecnico)
+app.use(routerTecnico);
+app.use(routerServicio);
+app.use(routerInsumo)
 
 
 app.use(express.static(path.join(__dirname, "..", "public")));
