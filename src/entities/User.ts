@@ -1,4 +1,4 @@
-import { Column,OneToMany, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Column,OneToMany, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn, ManyToOne, JoinColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Reclamo } from "./Reclamo";
 
@@ -28,6 +28,7 @@ class User {
 
   @Column()
   state: string;
+
 
   @OneToMany(()=> Reclamo, reclamo => reclamo.user)
   reclamos: Reclamo[];

@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Double, Entity, PrimaryColumn, UpdateDateColumn, OneToMany } from "typeorm";
+import { Column, CreateDateColumn, Double, Entity, PrimaryColumn, UpdateDateColumn, OneToMany, ManyToOne, JoinColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
 import { Reclamo } from "./Reclamo";
 
@@ -25,6 +25,7 @@ class Tecnico {
   
   @OneToMany(()=> Reclamo, reclamo => reclamo.tecnico)
   reclamos: Reclamo[];
+
 
   @CreateDateColumn()
   created_at: Date;
