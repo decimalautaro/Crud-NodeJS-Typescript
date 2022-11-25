@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn, ManyToOne, JoinColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn, ManyToOne, JoinColumn, OneToMany } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { PrestacionServicio } from "./PrestacionServicio";
 @Entity("insumos")
 class Insumo {
 
@@ -15,6 +16,8 @@ class Insumo {
   @Column()
   modelo: string;
 
+  @OneToMany(()=> PrestacionServicio, prestacionServicio => prestacionServicio.insumo)
+  prestacionServicios: PrestacionServicio[];
 
   @Column()
   descripcion: string;

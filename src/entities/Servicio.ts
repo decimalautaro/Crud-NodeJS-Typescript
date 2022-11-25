@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn, ManyToOne, JoinColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn, ManyToOne, JoinColumn, OneToMany } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { PrestacionServicio } from "./PrestacionServicio";
 
 @Entity("servicios")
 class Servicio {
@@ -16,6 +17,8 @@ class Servicio {
   @Column()
   tipoServicio: string;
 
+  @OneToMany(()=> PrestacionServicio, prestacionServicio => prestacionServicio.servicio)
+  prestacionServicios: PrestacionServicio[];
 
   @CreateDateColumn()
   created_at: Date;
