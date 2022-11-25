@@ -84,7 +84,7 @@
                 </div>
                 <div class="row"></div>
                 <div class="row">
-                  <form action="./user-delete"  method="POST">
+                  <form action="./user-delete" onclick='confirm("¿Esta seguro que desea eliminar el usuario?")'  method="POST">
                     <input type="hidden" name="id" value="<%= user.id %>" >
                     <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
                   </form>

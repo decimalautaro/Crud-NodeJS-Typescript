@@ -85,7 +85,7 @@
                 </div>
                 <div class="row"></div>
                 <div class="row">
-                  <form action="./reclamo-delete"  method="POST">
+                  <form action="./reclamo-delete" onclick='confirm("¿Esta seguro que desea eliminar el reclamo?")' method="POST">
                     <input type="hidden" name="id" value="<%= reclamo.id %>" >
                     <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
                   </form>
