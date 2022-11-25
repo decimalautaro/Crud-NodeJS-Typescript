@@ -80,7 +80,7 @@
                 </div>
                 <div class="row"></div>
                 <div class="row">
-                  <form action="./delete-tecnico" method="POST">
+                  <form action="./delete-tecnico" onclick='confirm("¿Esta seguro que desea eliminar el tecnico?")' method="POST">
                     <input type="hidden" name="id" value="<%= tecnico.id %>">
                     <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
                   </form>
