@@ -105,4 +105,5 @@ class InsumoServices {
 
 
 }
+export const insumoService = new InsumoServices()
 export default InsumoServices;

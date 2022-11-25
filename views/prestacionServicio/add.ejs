@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('../template/cabecera') %>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="./profile"><img src="img/icon.png" alt="Node.js icon" class="nav-icon"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <%- include ('../template/ul') %>
+            <form class="d-flex" action="./search" method="GET">
+              <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
+              <button class="btn secondary-btn" type="submit">Buscar</button>
+            </form>
+            <a href="/logout" class="btn btn-secondary ms-4">Cerrar sesion</a>
+        </div>
+      </div>
+    </nav>
+    <br>
+    <div class="container">
+      <div class="position-absolute">
+        <%- include ('../message/message') %>
+      </div>
+      <br>
+      <form action="./add-prestacion" method="POST">
+        <div class="container bg-white mt-5 mb-5">
+          <div class="row">
+            <div class="col border-right">
+              <div class="px-4 py-5 ">
+                <div class="text-center mb-5">
+                  <h2>Nueva Prestacion de servicio</h2>
+                  <hr>
+                </div>
+                <div>
+                  <img src="img/form.png" width="17%" height="17%" class="img-fluid rounded mx-auto d-block">
+                </div>
+                <div class="row col-auto mb-3">
+                  <div class="card my-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3 mt-4">
+                      <h4 class="text-right">Datos</h4>
+                    </div>
+                    <div class="row justify-content-evenly col-auto mb-3">
+                      <div class="col-md-6">
+                        <label for="userId" class="form-label">Usuario</label>
+                        <select name="userId" id="userId" class="form-select">
+                          <option value="" selected disabled>Seleccione usuario</option>
+                          <% user.forEach(function(user){ %>
+                            <option value="<%= user.id %>">
+                              <%= user.name %>
+                            </option>
+                            <%})%>
+                        </select>
+                      </div>
+                      <div class="form-check col-md-6">
+                        <label for="tecnicoId" class="form-label">Técnico interviniente</label>
+                        <select name="tecnicoId" id="tecnicoId" class="form-select">
+                          <option value="" selected disabled>Seleccione tecnico</option>
+                          <% tecnico.forEach(function(tecnico){ %>
+                            <option value="<%= tecnico.id %>">
+                              <%= tecnico.nombre %> - <%= tecnico.disponibilidad %> 
+                            </option>
+                            <%})%>
+                        </select>
+                      </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row justify-content-evenly col-auto mb-5">
+                      <div class="col-md-6">
+                        <label for="servicioId" class="form-label">Servicio</label>
+                        <select name="servicioId" id="servicioId" class="form-select">
+                          <option value="" selected disabled>Seleccione servicio</option>
+                          <% servicio.forEach(function(servicio){ %>
+                            <option value="<%= servicio.id %>">
+                              <%= servicio.tipoServicio %>
+                            </option>
+                            <%})%>
+                        </select>
+                      </div>
+                      <div class="form-check col-md-6">
+                        <label for="insumoId" class="form-label">Insumo</label>
+                        <select name="insumoId" id="insumoId" class="form-select">
+                          <option value="" selected disabled>Seleccione insumo</option>
+                          <% insumo.forEach(function(insumo){ %>
+                            <option value="<%= insumo.id %>">
+                              <%= insumo.tipo %>, <%= insumo.marca %>, <%= insumo.modelo %>
+                            </option>
+                            <%})%>
+                        </select>
+                      </div>
+                      <div class="row justify-content-evenly my-5">
+                        <div class="form-check col-md-6">
+                          <label for="tipoPrestacion" class="labels">Tipo de prestación</label>
+                          <select class="form-select" name="tipoPrestacion" id="tipoPrestacion" required>
+                              <option selected disabled value="">Elija una opción</option>
+                              <option value="Mensual">Mensual</option>
+                              <option value="Semestral">Semestral</option>
+                          </select>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-row mt-5 mb-4 justify-content-around" id="button">
+                    <div class="col-auto ">
+                      <button class="btn btn-success profile-button" type="submit">Guardar</button>
+                    </div>
+                    <div class="col-auto "><a class="btn btn-danger profile-button " href="./prestacionServicios"
+                        type="button">Volver</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"></script>
+    <script src="js/product-script.js"></script>
+  </body>
+
+</html>
