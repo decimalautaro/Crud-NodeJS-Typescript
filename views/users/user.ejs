@@ -14,7 +14,7 @@
       <%- include ('../template/ul') %>
         <form class="d-flex" action="./search" method="GET">
           <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
-          <button class="btn secondary-btn" type="submit">Buscar</button>
+          <button class="btn btn-outline-secondary" type="submit">Buscar</button>
         </form>
         <a href="/logout" class="btn btn-secondary ms-4">Cerrar sesion</a>
       </div>
@@ -34,7 +34,7 @@
     <br>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
     <table class="table table-hover">
-      <thead>
+      <thead class="table-dark text-center">
         <th scope="col">Usuario</th>
         <th scope="col">Nombre</th>
         <th scope="col">Email</th>
@@ -45,7 +45,7 @@
         <th scope="col">Actualización</th>
         <th scope="col">Comportamiento</th>
       </thead>
-      <tbody>
+      <tbody class="text-center">
         <% users.forEach(function(user) { %>
           <tr>
             <td>
@@ -75,18 +75,20 @@
                 <%= user.updated_at.toLocaleTimeString() %>
             </td>
             <td>
-              <div class="row">
-                <div class="row">
+              <div class="row my-2">
+                <div class="col-6">
                   <form action="./user-edit" method="GET">
                     <input type="hidden" name="id" value="<%= user.id %>">
-                    <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
+                    <button type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"
+                      class="btn btn-outline-secondary border"><i class="bi bi-pencil"></i></button>
                   </form>
                 </div>
-                <div class="row"></div>
-                <div class="row">
+        
+                <div class="col-6">
                   <form action="./user-delete" onclick='confirm("¿Esta seguro que desea eliminar el usuario?")'  method="POST">
                     <input type="hidden" name="id" value="<%= user.id %>" >
-                    <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
+                    <button type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Elimiar"
+                      class="btn btn-outline-danger border"><i class="bi bi-trash"></i></button>
                   </form>
                 </div>
               </div>
@@ -99,7 +101,7 @@
     <br>
     <br>
     <div class="float-start">
-      <a href="./add-user" class="btn primary-btn">Agregar usuario</a>
+      <a href="./add-user" class="btn new-btn">Agregar usuario</a>
     </div>
   </div>
   <%- include('../template/footer') %>

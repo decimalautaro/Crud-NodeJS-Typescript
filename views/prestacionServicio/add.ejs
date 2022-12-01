@@ -15,7 +15,7 @@
           <%- include ('../template/ul') %>
             <form class="d-flex" action="./search" method="GET">
               <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
-              <button class="btn secondary-btn" type="submit">Buscar</button>
+              <button class="btn btn-outline-secondary" type="submit">Buscar</button>
             </form>
             <a href="/logout" class="btn btn-secondary ms-4">Cerrar sesion</a>
         </div>
@@ -46,12 +46,12 @@
                     </div>
                     <div class="row justify-content-evenly col-auto mb-3">
                       <div class="col-md-6">
-                        <label for="userId" class="form-label">Usuario</label>
-                        <select name="userId" id="userId" class="form-select">
+                        <label for="clienteId" class="form-label">Cliente</label>
+                        <select name="clienteId" id="clienteId" class="form-select">
                           <option value="" selected disabled>Seleccione usuario</option>
-                          <% user.forEach(function(user){ %>
-                            <option value="<%= user.id %>">
-                              <%= user.name %>
+                          <% cliente.forEach(function(cliente){ %>
+                            <option value="<%= cliente.id %>">
+                              <%= cliente.name %>
                             </option>
                             <%})%>
                         </select>

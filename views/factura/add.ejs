@@ -27,13 +27,13 @@
         <%- include ('../message/message') %>
       </div>
       <br>
-      <form action="./reclamo-add" method="POST">
+      <form action="./add-prestacion" method="POST">
         <div class="container bg-white mt-5 mb-5">
           <div class="row">
             <div class="col border-right">
               <div class="px-4 py-5 ">
                 <div class="text-center mb-5">
-                  <h2>Nuevo Reclamo</h2>
+                  <h2>Nueva Factura</h2>
                   <hr>
                 </div>
                 <div>
@@ -45,54 +45,41 @@
                       <h4 class="text-right">Datos</h4>
                     </div>
                     <div class="row justify-content-evenly col-auto mb-3">
-                      <div class="col-md-12">
-                        <label for="tipoReclamo" class="form-label">Tipo de reclamo</label>
-                        <input type="text" name="tipoReclamo" id="tipoReclamo" class="form-control">
+                      <div class="form-check col-md-4">
+                        <label for="tecnicoId" class="form-label">Numero de Factura</label>
+                        <input type="text" class="form-control">
                       </div>
-                    </div>
-                    <div class="row justify-content-evenly col-auto mb-3">
-                      <div class="col-md-6">
-                        <label for="fecha" class="form-label">Fecha</label>
-                        <input type="date" name="fecha" id="fecha" class="form-control">
+                      <div class="form-check col-md-4">
+                        <label for="tecnicoId" class="form-label">Serie o Sucursal</label>
+                        <input type="text" class="form-control">
                       </div>
-                      <div class="form-check col-md-6">
-                        <label for="numeroReclamo" class="form-label">N° de reclamo</label>
-                        <input type="number" name="numeroReclamo" id="numeroReclamo" class="form-control">
+                      <div class="form-check col-md-4">
+                        <label for="tecnicoId" class="form-label">Tipo de Factura</label>
+                        <select class="form-select" name="tipoPrestacion" id="tipoPrestacion" required>
+                          <option selected disabled value="">Elija una opción</option>
+                          <option value="A">A</option>
+                          <option value="B">B</option>
+                          <option value="C">C</option>
+                        </select>
                       </div>
                     </div>
                     <br>
                     <br>
-                    <div class="row justify-content-evenly col-auto mb-5">
+                    <div class="row justify-content-start col-auto mb-5">
                       <div class="col-md-6">
-                        <label for="estado" class="form-label">Estado</label>
-                        <select name="estado" id="estado" class="form-select">
-                          <option value="" selected disabled>Selecione el estado</option>
-                          <option value="Pendiente">Pendiente</option>
-                          <option value="En progreso">En progreso</option>
-                          <option value="Finalizado">Finalizado</option>
+                        <label for="userId" class="form-label">Prestación de Servicio</label>
+                        <select class="form-select" name="tipoPrestacion" id="tipoPrestacion" required>
+                          <option selected disabled value="">Elija una opción</option>
+                          <option value="Mensual">Mensual</option>
+                          <option value="Semestral">Semestral</option>
                         </select>
                       </div>
-                      <div class="col-md-6">
-                        <label for="clienteId" class="form-label">Cliente</label>
-                        <select name="clienteId" id="clienteId" class="form-select">
-                          <option value="" selected disabled>Seleccione cliente</option>
-                          <% cliente.forEach(function(cliente){ %>
-                            <option value="<%= cliente.id %>">
-                              <%= cliente.name %>
-                            </option>
-                            <%})%>
-                        </select>
+                      <div class="form-check col-md-2">
+                        <label for="tecnicoId" class="form-label">Cantidad</label>
+                        <input type="text" class="form-control">
                       </div>
-                      <div class="row justify-content-evenly mt-5 mb-3">
-                        <label for="tecnicoId" class="form-label">Tecnico</label>
-                        <select name="tecnicoId" id="tecnicoId" class="form-select">
-                          <option value="" selected disabled>Seleccione tecnico</option>
-                          <% tecnico.forEach(function(tecnico){ %>
-                            <option value="<%= tecnico.id %>">
-                              <%= tecnico.nombre %>
-                            </option>
-                            <%})%>
-                        </select>
+                      <div class="mt-3">
+                        <button class="btn btn-secondary">+</button>
                       </div>
                     </div>
                   </div>
@@ -100,7 +87,7 @@
                     <div class="col-auto ">
                       <button class="btn btn-success profile-button" type="submit">Guardar</button>
                     </div>
-                    <div class="col-auto "><a class="btn btn-danger profile-button " href="./reclamos"
+                    <div class="col-auto "><a class="btn btn-danger profile-button " href="./prestacionServicios"
                         type="button">Volver</a></div>
                   </div>
                 </div>

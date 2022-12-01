@@ -3,8 +3,8 @@ import { v4 as uuid } from "uuid";
 import { PrestacionServicio } from "./PrestacionServicio";
 import { Reclamo } from "./Reclamo";
 
-@Entity("users")
-class User {
+@Entity("clientes")
+class Cliente {
 
   @PrimaryColumn()
   id: string;
@@ -13,22 +13,22 @@ class User {
   name: string;
 
   @Column()
-  username: string;
-
-  @Column()
-  password: string;
-
-  @Column()
   email: string;
 
   @Column()
-  phone: string;
+  phone: number;
 
   @Column()
   city: string;
 
   @Column()
   state: string;
+
+  @OneToMany(()=> Reclamo, reclamo => reclamo.cliente)
+  reclamos: Reclamo[];
+
+  @OneToMany(()=> PrestacionServicio, prestacionServicio => prestacionServicio.cliente)
+  prestacionServicios: PrestacionServicio[];
 
   @CreateDateColumn()
   created_at: Date;
@@ -44,4 +44,4 @@ class User {
 
 }
 
-export { User };
+export { Cliente };

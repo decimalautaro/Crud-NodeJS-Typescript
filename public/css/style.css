@@ -26,6 +26,21 @@ body {
   font-size: 5rem;
 }
 
+.pass-btn {
+  right: 0;
+}
+
+.new-btn {
+  border: 1px solid rgba(219, 219, 219, 0.938);
+  border-radius: 20px;
+  margin-right: 10px;
+}
+
+.new-btn:hover {
+  background-color: #ff6f80;
+  color: #fff;
+}
+
 .auth-btn {
   border: 1px solid rgba(219, 219, 219, 0.938);
   border-radius: 20px;
@@ -33,19 +48,21 @@ body {
 }
 
 .auth-btn:hover {
-  background-color: #ff6f80;
+  background-color: #6b6b6b;
   color: #fff;
 }
 
 .primary-btn {
-  background-color: #6cc24a;
+  background-color: rgba(134, 77, 77, 0.938);
   color: #fff;
+  border-radius: 20px;
+  margin-right: 10px;
 }
 
 .primary-btn:hover {
   background-color: transparent;
-  border-color: #6cc24a;
-  color: #6cc24a;
+  border: 1px solid  rgba(219, 219, 219, 0.938);
+  color: rgb(0, 0, 0);
 }
 
 .secondary-btn {

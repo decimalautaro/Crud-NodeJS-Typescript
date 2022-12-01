@@ -11,11 +11,11 @@ routerInsumo.get("/add-insumo",auth.isLoggedIn, (request, response) => {
     response.render("../views/insumos/insumo-add");
   });
 
-routerInsumo.post("/insumo-add",auth.isLoggedIn, insumoController.create);
+routerInsumo.post("/add-insumo",auth.isLoggedIn, insumoController.create);
 
 routerInsumo.get("/search-insumo",auth.isLoggedIn, insumoController.search);
 
-routerInsumo.get("/insumo-edit",auth.isLoggedIn, insumoController.edit);
+routerInsumo.get("/edit-insumo",auth.isLoggedIn, insumoController.edit);
 
 routerInsumo.post("/edit-insumo",auth.isLoggedIn, insumoController.update);
 

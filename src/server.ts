@@ -17,6 +17,7 @@ import { routerTecnico } from "./routes/tecnico-route";
 import { routerServicio } from "./routes/servicio-router";
 import { routerInsumo } from "./routes/insumo-router";
 import { routerPrestacionServicio } from "./routes/prestacionServicio-route";
+import { routerCliente } from "./routes/cliente-route";
 
 //inicializacion
 const app = express();
@@ -63,6 +64,8 @@ app.use(routerTecnico);
 app.use(routerServicio);
 app.use(routerInsumo);
 app.use(routerPrestacionServicio);
+app.use(routerCliente);
+
 
 
 app.use(express.static(path.join(__dirname, "..", "public")));

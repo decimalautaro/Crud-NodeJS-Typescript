@@ -15,7 +15,7 @@
           <%- include ('../template/ul') %>
             <form class="d-flex" action="./search-servicio" method="GET">
               <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
-              <button class="btn secondary-btn" type="submit">Buscar</button>
+              <button class="btn btn-outline-secondary" type="submit">Buscar</button>
             </form>
             <a href="/logout" class="btn btn-secondary ms-4">Cerrar sesion</a>
         </div>
@@ -32,17 +32,18 @@
       <br>
       <br>
       <br>
+      <a href="#" class="btn primary-btn col-2 mb-4" onclick="download_table_as_csv('tablaServicios');">Descargar en CSV</a>
       <div class="table-wrapper-scroll-y my-custom-scrollbar">
         <table id="tablaServicios" class="table table-hover">
-          <thead>
+          <thead class="table-dark text-center">
             <th scope="col">Planes</th>
             <th scope="col">Tipo de servicio</th>
             <th scope="col">Precio</th>
             <th scope="col">Creacion</th>
             <th scope="col">Actualizacion</th>
-            <th scope="col">Acciones</th>
+            <th scope="col">Comportamiento</th>
           </thead>
-          <tbody>
+          <tbody class="text-center">
             <% servicio.forEach(function(servicio) { %>
               <tr>
                 <td>
@@ -64,19 +65,20 @@
                     <%= servicio.updated_at.toLocaleTimeString() %>
                 </td>
                 <td>
-                  <div class="row">
-                    <div class="row">
+                  <div class="row my-2">
+                    <div class="col-6"">
                       <form action="./servicio-edit" method="GET">
                         <input type="hidden" name="id" value="<%= servicio.id %>">
-                        <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
-                      </form>
+                        <button type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"
+                      class="btn btn-outline-secondary border"><i class="bi bi-pencil"></i></button>
+                  </form>
                     </div>
-                    <div class="row"></div>
-                    <div class="row">
+                    <div class="col-6">
                       <form action="./delete-servicio" onclick='confirm("¿Esta seguro que desea eliminar el servicio?")'
                         method="POST">
                         <input type="hidden" name="id" value="<%= servicio.id %>">
-                        <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
+                        <button type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Elimiar"
+                        class="btn btn-outline-danger border"><i class="bi bi-trash"></i></button>
                       </form>
                     </div>
                   </div>
@@ -89,8 +91,7 @@
       <br>
       <br>
       <div class="float-start">
-        <a href="./add-servicio" class="btn primary-btn">Agregar servicio</a>
-        <a href="#" class="btn delete-btn" onclick="download_table_as_csv('tablaServicios');">Descargar en CSV</a>
+        <a href="./add-servicio" class="btn new-btn">Aregar servicio</a>
       </div>
     </div>
     <%- include('../template/footer') %>
