@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { clienteServices } from "../services/ClienteService";
 import ReclamosServices from "../services/ReclamoService";
 import TecnicoServices, { tecnicoServices } from "../services/TecnicoService";
 import {userService, UserServices} from "../services/UserService";
@@ -7,7 +8,7 @@ import {userService, UserServices} from "../services/UserService";
 class ReclamosController {
 
     async create(request: Request, response: Response) {
-        const { tipoReclamo, fecha, estado, numeroReclamo,userId, tecnicoId } = request.body;
+        const { tipoReclamo, fecha, estado, numeroReclamo,clienteId, tecnicoId } = request.body;
     
         const createReclamoService = new ReclamosServices();
     
@@ -17,7 +18,7 @@ class ReclamosController {
                 fecha,
                 estado,
                 numeroReclamo,
-                userId,
+                clienteId,
                 tecnicoId
             }).then(() => {
                 request.flash("success","Reclamo creado exitosamente");
@@ -29,12 +30,12 @@ class ReclamosController {
             }
         }
 
+
     async add(request:Request, response: Response) {
-        const user = await userService.list();
+        const cliente = await clienteServices.list();
         const tecnico= await tecnicoServices.list();
-        return response.render("./reclamos/reclamo-add",{user, tecnico})
+        return response.render("./reclamos/reclamo-add",{cliente, tecnico})
         
- 
     }
     
 
@@ -63,16 +64,15 @@ class ReclamosController {
     
         const getReclamoDataService = new ReclamosServices();
         const reclamo = await getReclamoDataService.edit(id);
-        
-        const listUser = new UserServices()
-        const user = await listUser.list()
+
+        const cliente = await clienteServices.list()
 
         const listTecnico = new TecnicoServices()
         const tecnico = await listTecnico.list()
 
         return response.render("./reclamos/reclamo-edit", {
             reclamo: reclamo,
-            user: user,
+            cliente: cliente,
             tecnico: tecnico,
         });
     }
@@ -82,9 +82,8 @@ class ReclamosController {
         const listReclamosService = new ReclamosServices();
     
         const reclamos = await listReclamosService.list();
-        
-        const listUser = new UserServices()
-        const user = await listUser.list()
+
+        const cliente = await clienteServices.list()
 
         const listTecnico = new TecnicoServices()
         const tecnico = await listTecnico.list()
@@ -92,7 +91,7 @@ class ReclamosController {
 
             return response.render("./reclamos/reclamo", {
             reclamos: reclamos,
-            user: user,
+            cliente: cliente,
             tecnico: tecnico
         });
     }
@@ -118,17 +117,17 @@ class ReclamosController {
 
 
     async update(request: Request, response: Response) {
-        const { id, tipoReclamo, numeroReclamo, fecha, estado, userId, tecnicoId} = request.body;
+        const { id, tipoReclamo, numeroReclamo, fecha, estado, clienteId, tecnicoId} = request.body;
     
         const updateReclamoService = new ReclamosServices();
     
         try {
-            await updateReclamoService.update({ id, tipoReclamo, numeroReclamo, fecha, estado, userId, tecnicoId }).then(() => {
+            await updateReclamoService.update({ id, tipoReclamo, numeroReclamo, fecha, estado, clienteId, tecnicoId }).then(() => {
                 request.flash("success","Reclamo actualizado exitosamente");
-                response.redirect("./users");
+                response.redirect("./reclamos");
         });
         } catch (err) {
-            request.flash("error","Error al actualizar el usuario"), err;
+            request.flash("error","Error al actualizar el usuario", err.toString());
             response.redirect("./reclamos");
         }
     

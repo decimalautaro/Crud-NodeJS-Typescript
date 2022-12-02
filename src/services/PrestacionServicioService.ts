@@ -4,7 +4,7 @@ import { PrestacionServicioRepository } from "../repositories/PrestacionServicio
 
 interface IPrestacionServicio {
     id?: string;
-    userId:string;
+    clienteId:string;
     tecnicoId: string;
     servicioId: string;
     insumoId: string;
@@ -12,14 +12,14 @@ interface IPrestacionServicio {
 }
 
 class PrestacionServicioService {
-    async create({ userId, tecnicoId, servicioId, insumoId, tipoPrestacion }:IPrestacionServicio) {
-        if ( !userId || !tecnicoId || !servicioId || !insumoId || !tipoPrestacion) {
+    async create({ clienteId, tecnicoId, servicioId, insumoId, tipoPrestacion }:IPrestacionServicio) {
+        if ( !clienteId || !tecnicoId || !servicioId || !insumoId || !tipoPrestacion) {
             throw new Error("Por favor complete todos los campos");
         }
 
         const prestacionRepository = getCustomRepository(PrestacionServicioRepository)
         
-        const prestacionServicio = prestacionRepository.create({ userId, tecnicoId, servicioId, insumoId, tipoPrestacion })
+        const prestacionServicio = prestacionRepository.create({ clienteId, tecnicoId, servicioId, insumoId, tipoPrestacion })
         await prestacionRepository.save(prestacionServicio)
 
         return
@@ -49,7 +49,7 @@ class PrestacionServicioService {
     async list() {
         const prestacionRepository = getCustomRepository(PrestacionServicioRepository)
 
-        const prestacionServicio = await prestacionRepository.find({ relations:["user", "tecnico", "servicio", "insumo"] })
+        const prestacionServicio = await prestacionRepository.find({ relations:["cliente", "tecnico", "servicio", "insumo"] })
 
         return prestacionServicio
     }
@@ -63,7 +63,7 @@ class PrestacionServicioService {
 
         const prestacionServicio = await prestacionRepository
             .createQueryBuilder()
-            .where("userId like :search", { search: `%${search}%` })
+            .where("clienteId like :search", { search: `%${search}%` })
             .orWhere("tecnicoId like :search", { search: `%${search}%` })
             .orWhere("servicioId like :search", { search: `%${search}%` })
             .orWhere("insumoId like :search", { search: `%${search}%` })
@@ -73,13 +73,13 @@ class PrestacionServicioService {
         return prestacionRepository;
     }
 
-    async update({ id, userId, tecnicoId, servicioId, insumoId, tipoPrestacion }: IPrestacionServicio) {
+    async update({ id, clienteId, tecnicoId, servicioId, insumoId, tipoPrestacion }: IPrestacionServicio) {
         const prestacionRepository = getCustomRepository(PrestacionServicioRepository)
 
         const prestacionServicio = await prestacionRepository
             .createQueryBuilder()
             .update(PrestacionServicio)
-            .set({ userId, tecnicoId, servicioId, insumoId, tipoPrestacion })
+            .set({ clienteId, tecnicoId, servicioId, insumoId, tipoPrestacion })
             .where("id = :id", { id })
             .execute();
     

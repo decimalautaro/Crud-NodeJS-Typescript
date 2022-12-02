@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { clienteServices } from "../services/ClienteService";
 import { insumoService } from "../services/InsumoService";
 import { prestacionServicioService } from "../services/PrestacionServicioService";
 import { servicioServices } from "../services/ServicioService";
@@ -9,11 +10,11 @@ import { userService, UserServices } from "../services/UserService";
 class PrestacionServicioController {
 
     async create(request: Request, response: Response) {
-        const { userId, tecnicoId, servicioId, insumoId, tipoPrestacion } = request.body;
+        const { clienteId, tecnicoId, servicioId, insumoId, tipoPrestacion } = request.body;
 
         try {
             await prestacionServicioService.create({
-                userId,
+                clienteId,
                 tecnicoId,
                 servicioId,
                 insumoId,
@@ -23,18 +24,18 @@ class PrestacionServicioController {
                 response.redirect("./prestacionServicios");
             });
         } catch (err) {
-            request.flash("error", "Error al registrar prestacion"), err;
+            request.flash("error", "Error al registrar prestacion", err.toString()), err;
             response.redirect("./prestacionServicios");
         }
 
     }
 
     async add(request: Request, response: Response) {
-        const user = await userService.list();
+        const cliente = await clienteServices.list();
         const tecnico = await tecnicoServices.list();
         const servicio = await servicioServices.list();
         const insumo = await insumoService.list();
-        return response.render("prestacionServicio/add", { user, tecnico, servicio, insumo })
+        return response.render("prestacionServicio/add", { cliente, tecnico, servicio, insumo })
     }
 
     async delete(request: Request, response: Response) {
@@ -97,10 +98,10 @@ class PrestacionServicioController {
     }
 
     async update(request: Request, response: Response) {
-        const { id, userId, tecnicoId, servicioId, insumoId, tipoPrestacion } = request.body;
+        const { id, clienteId, tecnicoId, servicioId, insumoId, tipoPrestacion } = request.body;
 
         try {
-            await prestacionServicioService.update({ id, userId, tecnicoId, servicioId, insumoId, tipoPrestacion })
+            await prestacionServicioService.update({ id, clienteId, tecnicoId, servicioId, insumoId, tipoPrestacion })
             request.flash("success", "Prestacion actualizada exitosamente");
             response.redirect("./prestacionServicios");
         } catch (err) {

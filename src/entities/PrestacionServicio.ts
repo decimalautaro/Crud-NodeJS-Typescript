@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { Cliente } from "./Cliente";
 import { Insumo } from "./Insumo";
 import { Servicio } from "./Servicio";
 import { Tecnico } from "./Tecnico";
@@ -13,7 +14,7 @@ class PrestacionServicio {
     id: string
 
     @Column()
-    userId: string
+    clienteId: string
     
     @Column()
     tecnicoId: string
@@ -24,9 +25,9 @@ class PrestacionServicio {
     @Column()
     insumoId: string
 
-    @ManyToOne(()=> User, user => user.prestacionServicios)
-    @JoinColumn({name: "userId"})
-    user: User
+    @ManyToOne(()=> Cliente, cliente => cliente.prestacionServicios)
+    @JoinColumn({name: "clienteId"})
+    cliente: Cliente
 
     @ManyToOne(()=> Tecnico, tecnico => tecnico.prestacionServicios)
     @JoinColumn({name: "tecnicoId"})

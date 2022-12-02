@@ -11,9 +11,8 @@
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <%- include ('../template/ul') %>
-        <form class="d-flex" action="./search-category" method="GET">
+      <%- include ('../template/ul') %>
+        <form class="d-flex" action="./search" method="GET">
           <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
           <button class="btn btn-outline-secondary" type="submit">Buscar</button>
         </form>
@@ -26,8 +25,9 @@
     <div class="position-absolute">
       <%- include ('../message/message') %>
     </div>
+
     <div class="text-center">
-      <h2>Tabla de categoria</h2>
+      <h2>Tabla de clientes</h2>
     </div>
     <br>
     <br>
@@ -36,38 +36,55 @@
     <table class="table table-hover">
       <thead class="table-dark text-center">
         <th scope="col">Nombre</th>
+        <th scope="col">Email</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Departamento</th>
+        <th scope="col">Provincia</th>
         <th scope="col">Creación</th>
         <th scope="col">Actualización</th>
         <th scope="col">Comportamiento</th>
       </thead>
       <tbody class="text-center">
-        <% category.forEach(function(category) { %>
+        <% clientes.forEach(function(cliente) { %>
           <tr>
             <td>
-              <%= category.name %>
-            </td>
-           
-            <td>
-              <%= category.created_at.toLocaleDateString() %>
-                <%= category.created_at.toLocaleTimeString() %>
+              <%= cliente.name %>
             </td>
             <td>
-              <%= category.updated_at.toLocaleDateString() %>
-                <%= category.updated_at.toLocaleTimeString() %>
+              <%= cliente.email %>
             </td>
             <td>
-              <div class="row">
-                <div class="row">
-                  <form action="./edit-category" method="GET">
-                    <input type="hidden" name="id" value="<%= category.id %>">
-                    <button type="submit" class="btn edit-btn"><i class="bi bi-pencil"></i></button>
+              <%= cliente.phone %>
+            </td>
+            <td>
+              <%= cliente.city %>
+            </td>
+            <td>
+              <%= cliente.state %>
+            </td>
+            <td>
+              <%= cliente.created_at.toLocaleDateString() %>
+                <%= cliente.created_at.toLocaleTimeString() %>
+            </td>
+            <td>
+              <%= cliente.updated_at.toLocaleDateString() %>
+                <%= cliente.updated_at.toLocaleTimeString() %>
+            </td>
+            <td>
+              <div class="row my-2">
+                <div class="col-6">
+                  <form action="./cliente-edit" method="GET">
+                    <input type="hidden" name="id" value="<%= cliente.id %>">
+                    <button type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"
+                      class="btn btn-outline-secondary border"><i class="bi bi-pencil"></i></button>
                   </form>
                 </div>
-                <div class="row"></div>
-                <div class="row">
-                  <form action="./delete-category" method="POST">
-                    <input type="hidden" name="id" value="<%= category.id %>">
-                    <button type="submit" class="btn delete-btn"><i class="bi bi-trash"></i></button>
+
+                <div class="col-6">
+                  <form action="./cliente-delete" onclick='confirm("¿Esta seguro que desea eliminar el cliente?")'  method="POST">
+                    <input type="hidden" name="id" value="<%= cliente.id %>" >
+                    <button type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Elimiar"
+                      class="btn btn-outline-danger border"><i class="bi bi-trash"></i></button>
                   </form>
                 </div>
               </div>
@@ -76,18 +93,17 @@
           <% }) %>
       </tbody>
     </table>
-    </div>
+  </div>
     <br>
     <br>
     <div class="float-start">
-      <a href="./add-category" class="btn new-btn">Agregar categoria</a>
+      <a href="./add-cliente" class="btn new-btn">Agregar cliente</a>
     </div>
   </div>
   <%- include('../template/footer') %>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
     crossorigin="anonymous"></script>
-  <script src="js/category-script.js"></script>
 </body>
 
 </html>

@@ -27,7 +27,7 @@
         <%- include ('../message/message') %>
       </div>
       <div class="text-center">
-        <h2>Prestaciones de Servicio</h2>
+        <h2>Facturas</h2>
       </div>
       <br>
       <br>
@@ -37,70 +37,67 @@
       <div class="table-wrapper-scroll-y my-custom-scrollbar">
         <table id="tablaPrestacionServicio" class="table table-hover">
           <thead class="table-dark text-center">
-            <th scope="col">Usuario</th>
-            <th scope="col">Técnico</th>
-            <th scope="col">Servicio</th>
-            <th scope="col">Insumo</th>
-            <th scope="col">Tipo de Prestacion</th>
+            <th scope="col">Prestacion Servicio</th>
+            <th scope="col">Número Factura</th>
+            <th scope="col">Serie</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Fecha</th>
             <th scope="col">Creacion</th>
             <th scope="col">Actualizacion</th>
             <th scope="col">Comportamiento</th>
           </thead>
           <tbody class="text-center">
-            <% prestacionServicio.forEach(function(prestacionServicio) { %>
-              <tr>
-                <td>
-                  <%= prestacionServicio.cliente.name %>
-                </td>
-                <td>
-                  <%= prestacionServicio.tecnico.nombre %>
-                </td>
-                <td>
-                  <%= prestacionServicio.servicio.tipoServicio %>
-                </td>
-                <td>
-                  <%= prestacionServicio.insumo.tipo %>, <%= prestacionServicio.insumo.marca %>, <%=
-                        prestacionServicio.insumo.modelo %>
-                </td>
-                <td>
-                  <%= prestacionServicio.tipoPrestacion %>
-                </td>
-                <td>
-                  <%= prestacionServicio.created_at.toLocaleDateString() %>
-                    <%= prestacionServicio.created_at.toLocaleTimeString() %>
-                </td>
-                <td>
-                  <%= prestacionServicio.updated_at.toLocaleDateString() %>
-                    <%= prestacionServicio.updated_at.toLocaleTimeString() %>
-                </td>
-                <td>
-                  <div class="row mY-2">
-                    <div class="col-6">
-                      <form action="./edit-prestacion" method="GET">
-                        <input type="hidden" name="id" value="<%= prestacionServicio.id %>">
-                        <button type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"
-                          class="btn btn-outline-secondary border"><i class="bi bi-pencil"></i></button>
-                      </form>
-                    </div>
-                    <div class="col-6">
-                      <form action="./delete-prestacion" method="POST"
-                        onclick="return confirm('¿Está seguro que desa eliminar esta prestación?');">
-                        <input type="hidden" name="id" value="<%= prestacionServicio.id %>">
-                        <button type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Elimiar"
-                          class="btn btn-outline-danger border"><i class="bi bi-trash"></i></button>
-                      </form>
-                    </div>
+
+            <!-- <tr>
+              <td>
+                
+              </td>
+              <td>
+
+              </td>
+              <td>
+
+              </td>
+              <td>
+
+              </td>
+              <td>
+
+              </td>
+              <td>
+
+              </td>
+              <td>
+
+              </td>
+              <td>
+                <div class="row mY-2">
+                  <div class="col-6">
+                    <form action="./edit-prestacion" method="GET">
+                      <input type="hidden" name="id">
+                      <button type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar"
+                        class="btn btn-outline-secondary border"><i class="bi bi-pencil"></i></button>
+                    </form>
                   </div>
-                </td>
-              </tr>
-              <% }) %>
+                  <div class="col-6">
+                    <form action="./delete-prestacion" method="POST"
+                      onclick="return confirm('¿Está seguro que desa eliminar esta prestación?');">
+                      <input type="hidden" name="id">
+                      <button type="submit" data-bs-toggle="tooltip" data-bs-placement="top" title="Elimiar"
+                        class="btn btn-outline-danger border"><i class="bi bi-trash"></i></button>
+                    </form>
+                  </div>
+                </div>
+              </td>
+            </tr> -->
           </tbody>
         </table>
       </div>
       <br>
       <br>
       <div class="float-start">
-        <a href="./add-prestacion" class="btn new-btn">Nueva prestacion de servicio</a>
+        <a href="./add-factura" class="btn new-btn">Nueva Factura</a>
       </div>
     </div>
     <%- include('../template/footer') %>

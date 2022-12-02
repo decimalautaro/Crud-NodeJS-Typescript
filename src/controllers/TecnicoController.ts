@@ -22,7 +22,7 @@ class TecnicoController {
           response.redirect("./tecnicos");
             });
         } catch (err) {
-            request.flash("error","Error al crear el tecnico"), err;
+            request.flash("error","Error al crear el tecnico", err.toString());
         response.redirect("./tecnicos");
         }
     

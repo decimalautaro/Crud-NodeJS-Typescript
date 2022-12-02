@@ -15,7 +15,7 @@
         <%- include ('../template/ul') %>
         <form class="d-flex" action="./search" method="GET">
           <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
-          <button class="btn secondary-btn" type="submit">Buscar</button>
+          <button class="btn btn-outline-secondary" type="submit">Buscar</button>
         </form>
         <a href="/logout" class="btn btn-secondary ms-4">Cerrar sesion</a>
       </div>
@@ -33,7 +33,7 @@
     <br>
     <br>
     <table class="table table-hover">
-      <thead>
+      <thead class="table-dark text-center">
         <th scope="col">Usuario</th>
         <th scope="col">Contraseña</th>
         <th scope="col">Nombre</th>
@@ -45,7 +45,7 @@
         <th scope="col">Actualización</th>
         <th scope="col">Comportamiento</th>
       </thead>
-      <tbody>
+      <tbody class="text-center">
         <% users.forEach(function(user) { %>
           <tr>
             <td>

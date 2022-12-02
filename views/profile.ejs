@@ -25,44 +25,28 @@
     <%- include ('./message/message') %>
     <div class="container">
         <br>
-        <br>
-        <br>
         <div class="col-md-12 ">
           <div class=" text-center ">
             <h3><strong>Bienvenido <%= user.name %></strong> </h3>
             <h4>Que desea hacer?</h4>
           </div>
           <br>
-          <br>
-          <div class="row col-12 d-flex justify-content-around mb-5">
-            <div class="col-sm-3">
-              <div class="card card-index ">
-                <div class="card-body ">
-                  <h5 class="card-title">Editar usuario</h5>
-                  <p class="card-text">En esta seccion podrás editar tu usuario</p>
-                  <form action="./user-edit" method="GET">
-                    <input type="hidden" name="id" value="<%= user.id %>">
-                    <button type="submit" class="btn btn-primary">Ingresar</button>
-                  </form>
-                </div>
-              </div>
-            </div>
-
+          <div class="row col-12 d-flex justify-content-around mb-4">
             <div class="col-sm-3">
               <div class="card card-index">
                 <div class="card-body">
-                  <h5 class="card-title">Productos</h5>
-                  <p class="card-text">En esta sección podrás acceder a los productos.</p>
-                  <a href="./products" class="btn btn-primary">Ingresar</a>
+                  <h5 class="card-title">Insumos</h5>
+                  <p class="card-text">En esta sección podrás acceder a los insumos.</p>
+                  <a href="./insumos" class="btn btn-primary">Ingresar</a>
                 </div>
               </div>
             </div>
             <div class="col-sm-3">
               <div class="card card-index">
                 <div class="card-body">
-                  <h5 class="card-title">Categoria</h5>
-                  <p class="card-text">En esta sección podrás acceder a los categorias.</p>
-                  <a href="./category" class="btn btn-primary">Ingresar</a>
+                  <h5 class="card-title">Servicios</h5>
+                  <p class="card-text">En esta sección podrás acceder a los servicios.</p>
+                  <a href="./servicios" class="btn btn-primary">Ingresar</a>
                 </div>
               </div>
             </div>
@@ -78,16 +62,18 @@
                 </div>
               </div>
             </div>
+
             <div class="col-sm-3">
-              <div class="card card-index">
-                <div class="card-body">
-                  <h5 class="card-title">Tecnicos</h5>
-                  <p class="card-text">En esta sección podrás acceder a los tecnicos.</p>
-                  <a href="./tecnicos" class="btn btn-primary">Ingresar</a>
+              <div class="col-sm-3">
+                <div class="card card-index">
+                  <div class="card-body">
+                    <h5 class="card-title">Clientes</h5>
+                    <p class="card-text">En esta sección podrás acceder a los clientes.</p>
+                    <a href="./clientes" class="btn btn-primary">Ingresar</a>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-sm-3">
+              <div class="col-sm-3">
 
             </div>
           </div>

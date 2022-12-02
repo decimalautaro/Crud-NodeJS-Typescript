@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn, ManyToOne, JoinColumn } from "typeorm";
 import { v4 as uuid } from "uuid";
+import { Cliente } from "./Cliente";
 import { Tecnico } from "./Tecnico";
 import { User } from "./User";
 
@@ -22,11 +23,11 @@ class Reclamo {
   estado: string;
 
   @Column()
-  userId:string;
+  clienteId:string;
 
-  @ManyToOne(()=> User, user => user.reclamos)
-  @JoinColumn({name: "userId"})
-  user: User
+  @ManyToOne(()=> Cliente, cliente => cliente.reclamos)
+  @JoinColumn({name: "clienteId"})
+  cliente: Cliente
 
   @Column()
   tecnicoId: string;

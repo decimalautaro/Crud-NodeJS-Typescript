@@ -15,7 +15,7 @@
         <%- include ('../template/ul') %>
         <form class="d-flex" action="./search-reclamo" method="GET">
           <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
-          <button class="btn secondary-btn" type="submit">Buscar</button>
+          <button class="btn btn-outline-secondary" type="submit">Buscar</button>
         </form>
         <a href="/logout" class="btn btn-secondary ms-4">Cerrar sesion</a>
       </div>
@@ -33,7 +33,7 @@
     <br>
     <br>
     <table class="table table-hover">
-      <thead>
+      <thead class="table-dark text-center">
         <th scope="col">Tipo de reclamo</th>
         <th scope="col">N° de reclamo</th>
         <th scope="col">Fecha</th>
@@ -42,7 +42,7 @@
         <th scope="col">Tecnico</th>
 
       </thead>
-      <tbody>
+      <tbody class="text-center">
         <% reclamos.forEach(function(reclamo) { %>
           <tr>
             <td>

@@ -15,7 +15,7 @@
         <%- include ('../template/ul') %>
         <form class="d-flex" action="./search-product" method="GET">
           <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
-          <button class="btn secondary-btn" type="submit">Buscar</button>
+          <button class="btn btn-outline-secondary" type="submit">Buscar</button>
         </form>
         <a href="/logout" class="btn btn-secondary ms-4">Cerrar sesion</a>
       </div>
@@ -34,7 +34,7 @@
     <br>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
     <table class="table table-hover">
-      <thead>
+      <thead class="table-dark text-center">
         <th scope="col">Nombre</th>
         <th scope="col">Precio</th>
         <th scope="col">Tipo</th>
@@ -43,7 +43,7 @@
         <th scope="col">Actualización</th>
         <th scope="col">Comportamiento</th>
       </thead>
-      <tbody>
+      <tbody class="text-center">
         <% products.forEach(function(product) { %>
           <tr>
             <td>
@@ -92,7 +92,7 @@
     <br>
     <br>
     <div class="float-start">
-      <a href="./add-product" class="btn primary-btn">Agregar producto</a>
+      <a href="./add-product" class="btn new-btn">Agregar producto</a>
     </div>
   </div>
   <%- include('../template/footer') %>

@@ -1,104 +1,123 @@
 <!DOCTYPE html>
 <html lang="es">
 
-  <%- include('../template/cabecera') %>
+<%- include('../template/cabecera') %>
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="./profile"><img src="img/icon.png" alt="Node.js icon" class="nav-icon"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <%- include ('../template/ul') %>
+            <form class="d-flex" action="./search" method="GET">
+              <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
+              <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+            </form>
+            <a href="/logout" class="btn btn-secondary ms-4">Cerrar sesion</a>
+        </div>
+      </div>
+    </nav>
+    <br>
     <div class="container">
-      <a class="navbar-brand" href="./profile"><img src="img/icon.png" alt="Node.js icon" class="nav-icon"></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <%- include ('../template/ul') %>
-        <form class="d-flex" action="./search-reclamo" method="GET">
-          <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="search">
-          <button class="btn secondary-btn" type="submit">Buscar</button>
-        </form>
-        <a href="/logout" class="btn btn-secondary ms-4">Cerrar sesion</a>
-      </div>
-    </div>
-  </nav>
-  <br>
-  <div class="container">
-    <div class="position-absolute">
-      <%- include ('../message/message') %>
-    </div>
-    <div class="text-center">
-      <h2>Actualizar reclamo</h2>
-    </div>
-    <br>
-    <form action="./edit-reclamo" method="POST">
-      <input type="hidden" name="id" value="<%= reclamo.id %>">
-      <div class="row">
-        <div class="col-12">
-          <label for="tipoReclamo" class="form-label">Tipo de reclamo</label>
-          <input type="text" name="tipoReclamo" id="tipoReclamo" class="form-control" value="<%= reclamo.tipoReclamo %>" required>
-        </div>
+      <div class="position-absolute">
+        <%- include ('../message/message') %>
       </div>
       <br>
-      <div class="row">
-        <div class="col-6">
-          <label for="numeroReclamo" class="form-label">N° de reclamo</label>
-          <input type="number" name="numeroReclamo" id="numeroReclamo" class="form-control" value="<%= reclamo.numeroReclamo %>" >
-        </div>
-        
-        <div class="col-6">
-          <label for="fecha" class="form-label">Fecha</label>
-          <input type="date" name="fecha" id="fecha" class="form-control" value="<%= reclamo.fecha %>">
-        </div> 
-      </div>
-      <div class="col-6">
-        <label for="estado" class="form-label">Estado</label>
-        <input type="bolean" name="estado" id="estado" class="form-control" value="<%= reclamo.estado %>">
-      </div> 
-
-      <div class="col-6">
-        <label for="userId" class="form-label">Usuario</label>
-        <select name="userId" id="userId" class="form-select">
-          <option value="" selected disabled>Seleccione el usuario</option>
-          <%  user.forEach(function(user){ %>
-            <option value="<%= user.id %>">
-              <%= user.name %>
-            </option>
-            <%})%>
-        </select>
-    </div>
-      <br>
-      <div class="col-6">
-        <label for="tecnicoId" class="form-label">Tecnico</label>
-        <select name="tecnicoId" id="userId" class="form-select">
-          <option value="" selected disabled>Seleccione el tecnico</option>
-          <%  tecnico.forEach(function(tecnico){ %>
-            <option value="<%= tecnico.id %>">
-              <%= tecnico.nombre %>
-            </option>
-            <%})%>
-        </select>
-    </div>
-    <br>
-      
-      <div class="row d-flex justify-content-center">
-        <div class="col-6">
-          <div class="float-start">
-            <button type="submit" class="btn primary-btn">Actualizar reclamo</button>
+      <form action="./edit-reclamo" method="POST">
+        <input type="hidden" name="id" value="<%= reclamo.id %>">
+        <div class="container bg-white mt-5 mb-5">
+          <div class="row">
+            <div class="col border-right">
+              <div class="px-4 py-5 ">
+                <div class="text-center mb-5">
+                  <h2>Nuevo Reclamo</h2>
+                  <hr>
+                </div>
+                <div>
+                  <img src="img/form.png" width="17%" height="17%" class="img-fluid rounded mx-auto d-block">
+                </div>
+                <div class="row col-auto mb-3">
+                  <div class="card my-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3 mt-4">
+                      <h4 class="text-right">Datos</h4>
+                    </div>
+                    <div class="row justify-content-evenly col-auto mb-3">
+                      <div class="col-md-12">
+                        <label for="tipoReclamo" class="form-label">Tipo de reclamo</label>
+                        <input type="text" name="tipoReclamo" id="tipoReclamo" class="form-control"
+                          value="<%= reclamo.tipoReclamo %>" required>
+                      </div>
+                    </div>
+                    <div class="row justify-content-evenly col-auto mb-3">
+                      <div class="col-md-6">
+                        <label for="fecha" class="form-label">Fecha</label>
+                        <input type="date" name="fecha" id="fecha" class="form-control" value="<%= reclamo.fecha %>">
+                      </div>
+                      <div class="form-check col-md-6">
+                        <label for="numeroReclamo" class="form-label">N° de reclamo</label>
+                        <input type="number" name="numeroReclamo" id="numeroReclamo" class="form-control"
+                          value="<%= reclamo.numeroReclamo %>">
+                      </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row justify-content-evenly col-auto mb-5">
+                      <div class="col-md-6">
+                        <label for="estado" class="form-label">Estado</label>
+                        <select name="estado" id="estado" class="form-select">
+                          <option value="<%= reclamo.numeroReclamo %>" selected>
+                            <%= reclamo.numeroReclamo %>
+                          </option>
+                          <option value="Pendiente">Pendiente</option>
+                          <option value="En progreso">En progreso</option>
+                          <option value="Finalizado">Finalizado</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="clienteId" class="form-label">Cliente</label>
+                        <select name="clienteId" id="clienteId" class="form-select" required>
+                          <% cliente.forEach(function(cliente){ %>
+                            <option value="<%= cliente.id %>">
+                              <%= cliente.name %>
+                            </option>
+                            <%})%>
+                        </select>
+                      </div>
+                      <div class="row justify-content-evenly mt-5 mb-3">
+                        <label for="tecnicoId" class="form-label">Tecnico</label>
+                        <select name="tecnicoId" id="tecnicoId" class="form-select" required>
+                          <% tecnico.forEach(function(tecnico){ %>
+                            <option value="<%= tecnico.id %>">
+                              <%= tecnico.nombre %>
+                            </option>
+                            <%})%>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-row mt-5 mb-4 justify-content-around" id="button">
+                    <div class="col-auto ">
+                      <button class="btn btn-success profile-button" type="submit">Guardar</button>
+                    </div>
+                    <div class="col-auto "><a class="btn btn-danger profile-button " href="./reclamos"
+                        type="button">Volver</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="col-6">
-          <div class="float-end">
-            <a href="./reclamos" class="btn secondary-btn">Volver atras</a>
-          </div>
-        </div>
-      </div>
+    </div>
     </form>
-  </div>
-  <%- include('../template/footer') %>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-    crossorigin="anonymous"></script>
-  <script src="js/product-script.js"></script>
-</body>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"></script>
+    <script src="js/product-script.js"></script>
+  </body>
 
 </html>
