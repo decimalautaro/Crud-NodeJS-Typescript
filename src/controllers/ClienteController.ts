@@ -46,7 +46,7 @@ class ClienteController {
     
         const cliente = await clienteServices.edit(id);
     
-        return response.render("./clientes/cliente-edit", {
+        return response.render("./cliente/cliente-edit", {
             cliente: cliente
         });
     }
