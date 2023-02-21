@@ -14,7 +14,7 @@ class auth{
             return next();
         }
         else{
-            req.flash("error", "Sesion iniciada")
+            req.flash("success", "Sesion iniciada")
             return res.redirect('/profile');
         }
         
